@@ -9,7 +9,6 @@ import {
   Sectors,
   Methodology,
   InnovationHub,
-  Quote,
   CTA,
   Footer,
 } from '@/components'
@@ -27,7 +26,6 @@ export default function Home() {
       <Sectors />
       <Methodology />
       <InnovationHub />
-      <Quote />
       <CTA />
       <Footer />
     </>
