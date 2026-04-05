@@ -25,7 +25,7 @@ export default function CTA() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          <a href="mailto:vc@np-jibb.org" className="cta-btn">
+          <a href="mailto:vc@npo-jibb.org" className="cta-btn">
             {t.cta.button}
             <span className="material-symbols-outlined">arrow_forward</span>
           </a>

@@ -264,7 +264,7 @@ export const translations: Record<Locale, TranslationType> = {
       bureau: { title: 'Bureau', items: ['About Us'] },
       services: { title: 'Services', items: ['Market Entry', 'Innovation Hub'] },
       contact: { title: 'Contact', items: ['Tokyo Office', 'Noida Office'] },
-      copyright: '2024 JIBB. All Rights Reserved.',
+      copyright: '2026 JIBB. All Rights Reserved.',
     },
   },
 
@@ -444,7 +444,7 @@ export const translations: Record<Locale, TranslationType> = {
       bureau: { title: '当局', items: ['私たちについて'] },
       services: { title: 'サービス', items: ['市場参入', 'イノベーションハブ'] },
       contact: { title: 'お問い合わせ', items: ['東京オフィス', 'ノイダオフィス'] },
-      copyright: '2024 JIBB。全著作権所有。',
+      copyright: '2026 JIBB。全著作権所有。',
     },
   },
 }

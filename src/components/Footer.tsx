@@ -7,7 +7,7 @@ import { motion } from '@/lib/motion'
 
 const socialLinks = [
   { icon: 'language', href: '#' },
-  { icon: 'mail', href: 'mailto:vc@np-jibb.org' },
+  { icon: 'mail', href: 'mailto:vc@npo-jibb.org' },
   { icon: 'share', href: '#' }
 ]
 
@@ -66,7 +66,7 @@ export default function Footer() {
                 {t.footer.contact.items.map((item, index) => (
                   <li key={index}><Link href="#">{item}</Link></li>
                 ))}
-                <li><a href="mailto:vc@np-jibb.org">vc@np-jibb.org</a></li>
+                <li><a href="mailto:vc@npo-jibb.org">vc@npo-jibb.org</a></li>
               </ul>
             </div>
           </div>

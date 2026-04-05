@@ -62,7 +62,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.55, ease: 'easeOut' }}
           >
-            <a href="mailto:vc@np-jibb.org" className="cta-primary">{t.hero.ctaPrimary}</a>
+            <a href="mailto:vc@npo-jibb.org" className="cta-primary">{t.hero.ctaPrimary}</a>
             <a href="#about" className="cta-secondary">{t.hero.ctaSecondary}</a>
           </motion.div>
         </motion.div>
