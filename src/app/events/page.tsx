@@ -109,7 +109,8 @@ export default function EventsPage() {
         secretariat: '日印コンサルティング株式会社（JIC）'
       },
       posterEn: '/events/semicon-india-2026-en.png',
-      posterJa: '/events/semicon-india-2026-ja.jpeg'
+      posterJa: '/events/semicon-india-2026-ja.jpeg',
+      registrationUrl: 'https://forms.gle/bVFXkLptQxsw7EGt5'
     },
     mobility: {
       id: 'mobility',
@@ -186,7 +187,8 @@ export default function EventsPage() {
         secretariat: '日印コンサルティング株式会社（JIC）'
       },
       posterEn: '/events/bharat-mobility-2027-en.png',
-      posterJa: '/events/bharat-mobility-2027-ja.jpeg'
+      posterJa: '/events/bharat-mobility-2027-ja.jpeg',
+      registrationUrl: 'https://forms.gle/y44jzoYZ8RLnog81A'
     }
   }
 
@@ -210,6 +212,8 @@ export default function EventsPage() {
       reception: 'Reception',
       capacity: 'Capacity',
       deadline: 'Event Date',
+      register: 'Register Now',
+      registerFree: 'Free Admission',
       organizer: 'Organizer',
       coOrganizers: 'Co-organizers',
       specialSupport: 'Special Support',
@@ -233,6 +237,8 @@ export default function EventsPage() {
       reception: '懇親会',
       capacity: '定員',
       deadline: '開催日',
+      register: '参加申込',
+      registerFree: '参加費無料',
       organizer: '主催',
       coOrganizers: '共催',
       specialSupport: '特別後援',
@@ -292,6 +298,16 @@ export default function EventsPage() {
             {t.titleEnd}
           </h1>
           <p className="events-hero-subtitle" style={jpFont}>{t.subtitle}</p>
+          <a
+            href={activeEventData.registrationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="events-register-btn"
+          >
+            <span className="material-symbols-outlined">edit_note</span>
+            {labels.register}
+            <span className="events-register-free">{labels.registerFree}</span>
+          </a>
         </motion.div>
 
         <motion.div className="events-hero-right" variants={fadeInUp}>
