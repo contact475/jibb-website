@@ -61,7 +61,7 @@ export default function EventsPage() {
           { time: '17:45-19:30', speaker: '', org: '', topic: 'Reception (Networking Party)', isBreak: false, isHighlight: true }
         ],
         organizer: 'India Electronics & Semiconductor Association (IESA)',
-        coOrganizers: ['NPO Japan India Business Bureau (JIBB) / JIBB India', 'Japan India Semiconductor Committee (JISC) / JISC India'],
+        coOrganizers: ['NPO Japan India Business Bureau (JIBB)'],
         specialSupport: 'JSPE Planarization CMP Technical Committee',
         supporters: ['FOURIN Inc.', 'Indobox Inc.'],
         specialCooperation: 'Global Net Corporation (GNC)',
@@ -101,7 +101,7 @@ export default function EventsPage() {
           { time: '17:45-19:30', speaker: '', org: '', topic: 'レセプション（懇親会）', isBreak: false, isHighlight: true }
         ],
         organizer: 'インド電子・半導体工業会（IESA）',
-        coOrganizers: ['NPO法人 日本インドビジネスビューロー（JIBB）/ JIBB India', '日印半導体コミッティー（JISC）/ JISC India'],
+        coOrganizers: ['NPO法人 日本インドビジネスビューロー（JIBB）'],
         specialSupport: '精密工学会「プラナリゼーションCMPとその応用専門委員会」',
         supporters: ['株式会社FOURIN（フォーイン）', 'Indobox株式会社'],
         specialCooperation: 'グローバルネット株式会社（GNC）',
