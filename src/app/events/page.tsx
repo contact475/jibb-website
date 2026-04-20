@@ -29,7 +29,7 @@ export default function EventsPage() {
     semicon: {
       id: 'semicon',
       en: {
-        tagline: 'Semicon India 2026 (Sep 17-19)',
+        tagline: 'Semicon India 2026 (Sep 17-19, 2026)',
         title: '1st Exhibition Briefing &',
         titleHighlight: 'Semiconductor Market',
         titleEnd: 'Outlook Seminar',
@@ -69,7 +69,7 @@ export default function EventsPage() {
         secretariat: 'Japan India Consulting (JIC)'
       },
       ja: {
-        tagline: 'Semicon India 2026（9月17日〜19日 / ニューデリー）',
+        tagline: 'Semicon India 2026（2026年9月17日〜19日 / ニューデリー）',
         title: '第一回 出展説明会 及び',
         titleHighlight: 'インド半導体市場の現状と展望',
         titleEnd: 'セミナー',
@@ -114,7 +114,7 @@ export default function EventsPage() {
     mobility: {
       id: 'mobility',
       en: {
-        tagline: 'Bharat Mobility 2027 (Feb 4-7)',
+        tagline: 'Bharat Mobility 2027 (Feb 4-7, 2027)',
         title: '4th Bharat Mobility 2027 &',
         titleHighlight: 'India Automotive Business',
         titleEnd: 'Entry Seminar',
@@ -150,7 +150,7 @@ export default function EventsPage() {
         secretariat: 'Japan India Consulting (JIC)'
       },
       ja: {
-        tagline: 'Bharat Mobility 2027（2026年2月4日〜7日）',
+        tagline: 'Bharat Mobility 2027（2027年2月4日〜7日）',
         title: '第4回 Bharat Mobility 2027 &',
         titleHighlight: 'インド自動車ビジネス',
         titleEnd: '進出セミナー',
