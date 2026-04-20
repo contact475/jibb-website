@@ -213,7 +213,7 @@ export default function EventsPage() {
       capacity: 'Capacity',
       deadline: 'Event Date',
       register: 'Register Now',
-      registerFree: 'Free Admission',
+      viewProgram: 'View Program',
       organizer: 'Organizer',
       coOrganizers: 'Co-organizers',
       specialSupport: 'Special Support',
@@ -238,7 +238,7 @@ export default function EventsPage() {
       capacity: '定員',
       deadline: '開催日',
       register: '参加申込',
-      registerFree: '参加費無料',
+      viewProgram: 'プログラム',
       organizer: '主催',
       coOrganizers: '共催',
       specialSupport: '特別後援',
@@ -298,16 +298,24 @@ export default function EventsPage() {
             {t.titleEnd}
           </h1>
           <p className="events-hero-subtitle" style={jpFont}>{t.subtitle}</p>
-          <a
-            href={activeEventData.registrationUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="events-register-btn"
-          >
-            <span className="material-symbols-outlined">edit_note</span>
-            {labels.register}
-            <span className="events-register-free">{labels.registerFree}</span>
-          </a>
+          <div className="events-hero-buttons">
+            <a
+              href={activeEventData.registrationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="events-btn events-btn-primary"
+            >
+              <span className="material-symbols-outlined">edit_note</span>
+              {labels.register}
+            </a>
+            <a
+              href="#program"
+              className="events-btn events-btn-secondary"
+            >
+              <span className="material-symbols-outlined">schedule</span>
+              {labels.viewProgram}
+            </a>
+          </div>
         </motion.div>
 
         <motion.div className="events-hero-right" variants={fadeInUp}>
