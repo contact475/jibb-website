@@ -55,6 +55,7 @@ export default function Navbar() {
           <li><Link href="#about">{t.nav.aboutUs}</Link></li>
           <li><Link href="#sectors">{t.nav.strategicSectors}</Link></li>
           <li><Link href="#innovation">{t.nav.innovationHub}</Link></li>
+          <li><Link href="/events">{locale === 'ja' ? 'イベント' : 'Events'}</Link></li>
           <li><Link href="#contact">{t.nav.contact}</Link></li>
         </ul>
 
@@ -120,6 +121,7 @@ export default function Navbar() {
                     { href: '#about', label: t.nav.aboutUs },
                     { href: '#sectors', label: t.nav.strategicSectors },
                     { href: '#innovation', label: t.nav.innovationHub },
+                    { href: '/events', label: locale === 'ja' ? 'イベント' : 'Events' },
                     { href: '#contact', label: t.nav.contact }
                   ].map((link, i) => (
                     <motion.li
