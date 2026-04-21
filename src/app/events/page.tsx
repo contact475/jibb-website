@@ -45,18 +45,18 @@ export default function EventsPage() {
         receptionCapacity: '60',
         deadline: 'April 24, 2026',
         program: [
-          { time: '14:00-14:05', speaker: 'Tatsutoshi Suzuki', org: 'JISC / Toho Koki', topic: 'Opening Remarks', isBreak: false },
-          { time: '14:05-14:10', speaker: 'Yasuhiko Takeno', org: 'GNC', topic: 'Greetings', isBreak: false },
-          { time: '14:10-14:15', speaker: 'Ashok Chandak', org: 'IESA', topic: 'Welcome Address (Online)', isBreak: false },
-          { time: '14:15-14:45', speaker: 'Dr. Toshiro Doi & Dr. Masaharu Kinoshita', org: 'CMP Committee', topic: 'Greetings & CMP Committee Introduction', isBreak: false },
-          { time: '14:45-15:15', speaker: 'Hirokuni Hiyama & Prof. Shuhei Kurokawa', org: 'CMP Committee', topic: 'Global Semiconductor Trends & CMP Equipment', isBreak: false },
-          { time: '15:15-16:05', speaker: 'Ashok Chandak', org: 'IESA', topic: 'India Market Status & Outlook (Online)', isBreak: false },
+          { time: '14:00-14:05', speaker: 'Mr. Tatsutoshi Suzuki (JISC Chairman / Toho Koki Chairman)', org: 'JISC', topic: 'Opening Remarks', isBreak: false },
+          { time: '14:05-14:10', speaker: 'Mr. Yasuhiko Takeno (President & CEO)', org: 'GNC', topic: 'Greetings', isBreak: false },
+          { time: '14:10-14:15', speaker: 'Mr. Ashok Chandak (President)', org: 'IESA', topic: 'Greetings (Online)', isBreak: false },
+          { time: '14:15-14:45', speaker: 'Dr. Toshiro Doi (Kyushu Univ. Professor Emeritus / CMP Committee Founder)', org: 'CMP Committee', topic: 'Greetings & CMP Committee Introduction', isBreak: false },
+          { time: '14:45-15:15', speaker: 'Mr. Hirokuni Hiyama (Ebara Corp. Technical Advisor / CMP Committee Honorary Chair)', org: 'CMP Committee', topic: 'Global Semiconductor Trends & CMP Equipment', isBreak: false },
+          { time: '15:15-16:05', speaker: 'Mr. Ashok Chandak (President)', org: 'IESA', topic: 'India Market Status & Outlook (Online)', isBreak: false },
           { time: '16:05-16:10', speaker: '', org: '', topic: 'Semicon India 2026 Video Introduction', isBreak: true },
-          { time: '16:10-16:25', speaker: 'IESA Representative', org: 'IESA', topic: 'Semicon India 2026 Exhibition Details (Online)', isBreak: false },
-          { time: '16:25-16:45', speaker: 'Takuya Nishimura', org: 'Toho Koki', topic: 'One Year Performance Evaluation After India Entry', isBreak: false },
-          { time: '16:45-17:05', speaker: 'Norihisa Akitani', org: 'JISC', topic: 'Semicon India Trends', isBreak: false },
-          { time: '17:05-17:25', speaker: 'Sai Chandra Teja', org: 'Green PMU / Indobox / JISC', topic: 'Accelerating Japan-India Semiconductor Industry', isBreak: false },
-          { time: '17:25-17:35', speaker: 'Shigeru Yasui', org: 'JIBB', topic: 'Japan Pavilion Benefits & JISC Business Center', isBreak: false },
+          { time: '16:10-16:25', speaker: 'TBA', org: 'IESA', topic: 'Semicon India 2026 Exhibition Details (Online)', isBreak: false },
+          { time: '16:25-16:45', speaker: 'Mr. Takuya Nishimura (General Manager)', org: 'Toho Koki', topic: 'One Year Performance Evaluation After India Entry', isBreak: false },
+          { time: '16:45-17:05', speaker: 'Mr. Norihisa Akitani (Director)', org: 'JISC', topic: 'Semicon India Trends', isBreak: false },
+          { time: '17:05-17:25', speaker: 'Mr. Sai Chandra Teja (Green PMU COO / Indobox Partner / JISC Member)', org: 'Green PMU', topic: 'Accelerating Japan-India Semiconductor Industry', isBreak: false },
+          { time: '17:25-17:35', speaker: 'Mr. Shigeru Yasui (CEO)', org: 'JIBB / JISC', topic: 'Japan Pavilion Benefits, JISC Functions, Business Center & IT Talent', isBreak: false },
           { time: '17:35-17:45', speaker: '', org: '', topic: 'Q&A Session', isBreak: true },
           { time: '17:45-19:30', speaker: '', org: '', topic: 'Reception (Networking Party)', isBreak: false, isHighlight: true }
         ],
@@ -85,18 +85,18 @@ export default function EventsPage() {
         receptionCapacity: '60名',
         deadline: '4月24日（金）',
         program: [
-          { time: '14:00-14:05', speaker: '鈴木辰俊', org: 'JISC / 東邦鋼機製作所', topic: '開会挨拶', isBreak: false },
-          { time: '14:05-14:10', speaker: '武野泰彦', org: 'GNC', topic: 'ご挨拶', isBreak: false },
-          { time: '14:10-14:15', speaker: 'Ashok Chandak', org: 'IESA', topic: 'ご挨拶（オンライン）', isBreak: false },
-          { time: '14:15-14:45', speaker: '土肥俊郎 博士 & 木下正治 博士', org: 'CMP専門委員会', topic: 'ご挨拶 ― CMP専門委員会の設立経緯・紹介', isBreak: false },
-          { time: '14:45-15:15', speaker: '檜山浩國 & 黒河周平 教授', org: 'CMP専門委員会', topic: '半導体世界情勢とCMP装置', isBreak: false },
-          { time: '15:15-16:05', speaker: 'Ashok Chandak', org: 'IESA', topic: 'インド市場の現状と展望（オンライン）', isBreak: false },
+          { time: '14:00-14:05', speaker: '鈴木辰俊 氏（JISC会長 / 東邦鋼機製作所 会長）', org: 'JISC', topic: '開会挨拶', isBreak: false },
+          { time: '14:05-14:10', speaker: '武野泰彦 氏（代表取締役社長）', org: 'GNC', topic: 'ご挨拶', isBreak: false },
+          { time: '14:10-14:15', speaker: 'Ashok Chandak 氏（President）', org: 'IESA', topic: 'ご挨拶（オンライン）', isBreak: false },
+          { time: '14:15-14:45', speaker: '土肥俊郎 氏（九州大学 名誉教授 / CMP専門委員会 創設者・名誉会長）', org: 'CMP専門委員会', topic: 'ご挨拶 ― CMP専門委員会の設立経緯・紹介', isBreak: false },
+          { time: '14:45-15:15', speaker: '檜山浩國 氏（荏原製作所 技監 / CMP専門委員会 名誉委員長）', org: 'CMP専門委員会', topic: '半導体世界情勢とCMP装置', isBreak: false },
+          { time: '15:15-16:05', speaker: 'Ashok Chandak 氏（President）', org: 'IESA', topic: 'インド市場の現状と展望（オンライン）', isBreak: false },
           { time: '16:05-16:10', speaker: '', org: '', topic: 'Semicon India 2026 ビデオ紹介', isBreak: true },
-          { time: '16:10-16:25', speaker: 'IESA担当者', org: 'IESA', topic: 'Semicon India 2026 展示会説明（オンライン）', isBreak: false },
-          { time: '16:25-16:45', speaker: '西村拓也', org: '東邦鋼機製作所', topic: 'インド進出から一年での実績評価', isBreak: false },
-          { time: '16:45-17:05', speaker: '穐谷宜親', org: 'JISC', topic: 'インドセミコンの流れ', isBreak: false },
-          { time: '17:05-17:25', speaker: 'サイ・チャンドラ・テジャ', org: 'Green PMU / Indobox / JISC', topic: '日印間での半導体産業を加速させるための提案・方法・高度人材について', isBreak: false },
-          { time: '17:25-17:35', speaker: '安井重麿', org: 'JIBB', topic: 'ジャパンパビリオンのメリット、JISCビジネスセンター開設について', isBreak: false },
+          { time: '16:10-16:25', speaker: '※登壇者名は後日確定', org: 'IESA', topic: 'Semicon India 2026 展示会説明（オンライン）', isBreak: false },
+          { time: '16:25-16:45', speaker: '西村拓也 氏（事業統括部長）', org: '東邦鋼機製作所', topic: 'インド進出から一年での実績評価', isBreak: false },
+          { time: '16:45-17:05', speaker: '穐谷宜親 氏（ディレクター）', org: 'JISC', topic: 'インドセミコンの流れ', isBreak: false },
+          { time: '17:05-17:25', speaker: 'サイ・チャンドラ・テジャ 氏（Green PMU COO / Indobox パートナー / JISC委員）', org: 'Green PMU', topic: '日印間での半導体産業を加速させるための提案・方法・高度人材について', isBreak: false },
+          { time: '17:25-17:35', speaker: '安井重麿 氏（CEO）', org: 'JIBB / JISC', topic: 'ジャパンパビリオンのメリット、JISCの機能紹介、日印半導体ビジネスセンター開設、インドIT人材の雇用について', isBreak: false },
           { time: '17:35-17:45', speaker: '', org: '', topic: '質疑応答', isBreak: true },
           { time: '17:45-19:30', speaker: '', org: '', topic: 'レセプション（懇親会）', isBreak: false, isHighlight: true }
         ],
@@ -110,7 +110,7 @@ export default function EventsPage() {
       },
       posterEn: '/events/semicon-india-2026-en.png',
       posterJa: '/events/semicon-india-2026-ja.jpeg',
-      registrationUrl: 'https://forms.gle/bVFXkLptQxsw7EGt5'
+      registrationUrl: 'https://forms.office.com/r/0F9ajnDpp2'
     },
     mobility: {
       id: 'mobility',
@@ -188,7 +188,7 @@ export default function EventsPage() {
       },
       posterEn: '/events/bharat-mobility-2027-en.png',
       posterJa: '/events/bharat-mobility-2027-ja.jpeg',
-      registrationUrl: 'https://forms.gle/y44jzoYZ8RLnog81A'
+      registrationUrl: 'https://forms.office.com/r/UbXevM8d3Y'
     }
   }
 
