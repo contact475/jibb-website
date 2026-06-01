@@ -115,18 +115,9 @@ const associations = [
     logo: '/jisc/widegap-logo.png',
     en: { name: 'Wide-Gap Semiconductor Society (WideG)', desc: 'Promotes R&D and social implementation of light-emitting and electronic devices using wide-bandgap semiconductors such as SiC and GaN.' },
     ja: { name: 'ワイドギャップ半導体学会 (WideG)', desc: 'SiCやGaN等のワイドバンドギャップ半導体を活用した発光デバイスおよび電子デバイスのR&Dと社会実装を推進。' }
-  },
-  {
-    logo: '/jisc/cmp-logo.avif',
-    en: { name: 'Planarization CMP Technology Study Group', desc: 'A committee of the Japan Society for Precision Engineering promoting R&D of CMP (chemical mechanical polishing) planarization technology for semiconductor manufacturing.' },
-    ja: { name: 'プラナリゼーションCMP技術研究会', desc: '精密工学会の専門委員会。半導体製造に不可欠なCMP（化学機械研磨）平坦化技術のR&Dを推進。' }
-  },
-  {
-    logo: '/jisc/ssis-logo.png',
-    en: { name: 'Semiconductor Industry Society (SSIS)', desc: 'Established in 1998 by experienced professionals contributing to the sustainable development of the semiconductor industry. Operates the Japan Semiconductor History Museum.' },
-    ja: { name: '半導体産業人協会 (SSIS)', desc: '1998年設立。豊富な経験を持つ専門家が半導体産業の持続的発展に貢献。日本半導体歴史館を運営。' }
-  },
+  }
 ]
+
 const supportedLogos = [
   { name: 'India Semiconductor Mission', src: '/jisc/govt-backed/india-semiconductor-mission-logo.png' },
   { name: 'Invest India', src: '/jisc/govt-backed/invest-india-logo.png' },
@@ -134,13 +125,13 @@ const supportedLogos = [
   { name: 'Guidance Tamil Nadu', src: '/jisc/govt-backed/guidance-tamilnadu-logo.png' },
   { name: 'CII', src: '/jisc/govt-backed/cii-logo.png' },
   { name: 'IESA', src: '/jisc/govt-backed/iesa-logo.webp' },
-  { name: 'ELCINA', src: '/jisc/govt-backed/elcina-logo.jpg' },
+  { name: 'ELCINA', src: '/jisc/govt-backed/elcina-logo.jpg' }
 ]
 
 const officeSpaces = [
   { icon: 'display_settings', en: 'Display Area', ja: 'ディスプレイエリア', image: '/jisc/display-area.jpg' },
   { icon: 'groups', en: 'Conference Room', ja: '会議室', image: '/jisc/conference-room.jpg' },
-  { icon: 'desktop_windows', en: 'Workstation', ja: 'ワークステーション', image: '/jisc/workstation.jpg' },
+  { icon: 'desktop_windows', en: 'Workstation', ja: 'ワークステーション', image: '/jisc/workstation.jpg' }
 ]
 
 interface CompanyData {
@@ -148,142 +139,115 @@ interface CompanyData {
   about: string;
   sectors: string[];
   readMore: string;
+  state: string;
+  products: string[];
+  address: string;
 }
 
 interface Company {
   website: string;
   logo: string;
+  side: 'Japan' | 'India';
+  objectives: ('Sale' | 'Procurement' | 'Joint Venture' | 'Technical tie-up' | 'Other')[];
   en: CompanyData;
   ja: CompanyData;
 }
 
 const memberCompanies: Company[] = [
   {
-    website: 'http://tohokoki.jp/toppage-en/',
-    logo: '/jisc/member-companies/toho-logo.jpg',
+    website: 'https://www.companya.com',
+    logo: '',
+    side: 'Japan',
+    objectives: ['Sale'],
     en: {
-      name: 'Toho Koki Seisakusho',
-      about: 'Japanese precision engineering company specializing in semiconductor-related machining and polishing technologies.',
-      sectors: ['CMP Pad Processing', 'Semiconductor Substrate Polishing', 'Surface Inspection Systems', 'SiC and AlN Semiconductor Materials'],
-      readMore: 'Developed advanced semiconductor manufacturing technologies through collaboration with universities and research institutes. Provides CMP pad groove adjustment systems, direct polishing technologies for semiconductor substrates, and solutions for SiC and AlN materials.'
+      name: 'Company A',
+      about: 'Precision manufacturer of industrial machinery parts and system components.',
+      sectors: ['Industrial Machinery', 'Precision Parts'],
+      readMore: 'Specializing in the development and wholesale supply of advanced industrial machinery parts to top manufacturing hubs globally.',
+      state: 'Tokyo',
+      products: ['Industrial machinery parts'],
+      address: '1-2-3 Marunouchi, Tokyo'
     },
     ja: {
-      name: '東邦鋼機製作所',
-      about: '日本の精密工学メーカーで、半導体関連の加工・研磨技術を専門としています。',
-      sectors: ['CMPパッド処理', '半導体基板研磨', '表面検査システム', 'SiC・AlN半導体材料'],
-      readMore: '大学や研究機関との連携を通じて先進的な半導体製造技術を開発。半導体基板用のCMPパッド溝加工システムや直接研磨技術、SiCおよびAlN材料のソリューションを提供。'
+      name: '株式会社A',
+      about: '産業機械部品およびシステムコンポーネントの精密製造会社。',
+      sectors: ['産業用機械', '精密部品'],
+      readMore: '最先端の産業機械部品を開発し、世界中の主要な製造拠点へ卸売供給することを専門としています。',
+      state: '東京都',
+      products: ['産業機械部品'],
+      address: '東京都千代田区丸の内1-2-3'
     }
   },
   {
-    website: 'https://www.kuraray.com/global-en/',
-    logo: '/jisc/member-companies/kuraray-logo.png',
+    website: 'https://www.companyb.com',
+    logo: '',
+    side: 'Japan',
+    objectives: ['Technical tie-up'],
     en: {
-      name: 'Kuraray',
-      about: 'Japanese specialty chemicals and advanced materials company with strong semiconductor manufacturing applications.',
-      sectors: ['Semiconductor CMP Pads', 'Semiconductor Fab Water Recycling', 'Functional Polymer Materials'],
-      readMore: 'Develops next-generation poreless CMP pads for advanced fabrication. Supplies hollow fiber membrane systems for wastewater recycling inside semiconductor fabrication plants.'
+      name: 'Company B',
+      about: 'High-tech innovator designing next-generation automotive electronic components.',
+      sectors: ['Automotive Electronics', 'Sensors'],
+      readMore: 'Pioneering smart mobility solutions and advanced driver-assistance system (ADAS) components through global research partnerships.',
+      state: 'Osaka',
+      products: ['Automotive electronic components'],
+      address: '4-5-6 Umeda, Osaka'
     },
     ja: {
-      name: 'クラレ',
-      about: '半導体製造分野に強みを持つ、日本の大手特殊化学・先端材料メーカー。',
-      sectors: ['半導体用CMPパッド', '工場廃水リサイクル', '機能性ポリマー材料'],
-      readMore: '先端製造プロセス向けの次世代ポアレスCMPパッドを開発。半導体工場内の廃水リサイクル用中空糸膜モジュール・システムも提供し、持続可能性と生産効率向上に貢献。'
+      name: '株式会社B',
+      about: '次世代の自動車用電子部品を設計・製造するハイテクイノベーター。',
+      sectors: ['自動車用電子機器', 'センサー'],
+      readMore: 'グローバルな研究提携を通じて、スマートモビリティソリューションおよび先進運転支援システム（ADAS）用部品を開拓しています。',
+      state: '大阪府',
+      products: ['自動車用電子部品'],
+      address: '大阪府大阪市北区梅田4-5-6'
     }
   },
   {
-    website: 'https://www.sumcosi.com/english/',
-    logo: '/jisc/member-companies/sumco-logo.jpg',
+    website: 'https://www.companyc.com',
+    logo: '',
+    side: 'India',
+    objectives: ['Procurement'],
     en: {
-      name: 'SUMCO Corporation',
-      about: 'One of the world’s leading manufacturers of silicon wafers used in semiconductor devices.',
-      sectors: ['Silicon Wafers', 'Semiconductor Substrate Materials', 'Advanced Wafer Manufacturing'],
-      readMore: 'Produces high-purity silicon wafers for logic chips, memory devices, and advanced electronics. Focuses on high quality standards and stable supply chains.'
+      name: 'Company C',
+      about: 'Premier manufacturer and exporter of sustainable textile and garment products.',
+      sectors: ['Textile Manufacturing', 'Export'],
+      readMore: 'Leading supplier of eco-friendly fabrics and garments to major fashion houses across Japan and the Asia-Pacific region.',
+      state: 'Maharashtra',
+      products: ['Textile and garment products'],
+      address: '12 MG Road, Mumbai'
     },
     ja: {
-      name: 'SUMCO',
-      about: '半導体デバイスの基盤となるシリコンウェーハの世界的大手メーカー。',
-      sectors: ['シリコンウェーハ', '半導体基板材料', '先端ウェーハ製造'],
-      readMore: '最先端ロジック、メモリ、各種パワー半導体デバイス向けの高純度シリコンウェーハを製造・供給。極めて高い品質基準と安定供給体制の構築に注力。'
+      name: '企業C',
+      about: '持続可能な繊維および衣類製品の主要な製造・輸出企業。',
+      sectors: ['繊維製造', '輸出業'],
+      readMore: '日本およびアジア太平洋地域の主要なファッションハウスへ、環境に優しい布地とアパレル製品を供給するリーディングカンパニー。',
+      state: 'マハラシュトラ州',
+      products: ['繊維・衣類製品'],
+      address: 'インド国マハラシュトラ州ムンバイ MGロード12番地'
     }
   },
   {
-    website: 'https://www.edwardsvacuum.com/',
-    logo: '/jisc/member-companies/edwards-logo.webp',
+    website: 'https://www.companyd.com',
+    logo: '',
+    side: 'India',
+    objectives: ['Joint Venture'],
     en: {
-      name: 'Edwards Japan Limited',
-      about: 'Provides vacuum and abatement solutions critical for semiconductor manufacturing facilities.',
-      sectors: ['Vacuum Pumps', 'Fab Abatement Systems', 'Manufacturing Infrastructure'],
-      readMore: 'Supports semiconductor fabs with advanced vacuum systems and exhaust gas treatment technologies. Improves production efficiency, safety, and sustainability.'
+      name: 'Company D',
+      about: 'Leading digital transformation firm specializing in IT software services and cloud solutions.',
+      sectors: ['IT Services', 'Cloud Computing', 'AI Solutions'],
+      readMore: 'Delivering end-to-end software engineering, data analytics, and enterprise technology integration services to global businesses.',
+      state: 'Karnataka',
+      products: ['IT software services'],
+      address: '88 Brigade Road, Bengaluru'
     },
     ja: {
-      name: 'エドワーズ株式会社',
-      about: '半導体製造プロセスに不可欠な真空および排ガス除害ソリューションを提供。',
-      sectors: ['真空ポンプ', '工場用除害システム', '製造インフラ'],
-      readMore: '最先端の真空システムと排ガス除害技術で世界の半導体ファブをサポート。生産効率、安全性、信頼性、および環境持続可能性（サステナビリティ）の向上を実現。'
-    }
-  },
-  {
-    website: 'https://www.okuma.co.jp/english/',
-    logo: '/jisc/member-companies/okuma-logo.png',
-    en: {
-      name: 'Okuma Corporation',
-      about: 'Precision manufacturing and CNC machine tool company supporting semiconductor and industrial manufacturing.',
-      sectors: ['Ultra-Precision CNC Machining', 'Equipment Manufacturing', 'Smart Factory Automation'],
-      readMore: 'Provides highly accurate CNC machining systems and smart manufacturing solutions. Supports high-precision industrial manufacturing through automation and digital technologies.'
-    },
-    ja: {
-      name: 'オークマ株式会社',
-      about: '半導体製造装置部品や高度な産業機械の製造を支える、世界的な精密CNC工作機械メーカー。',
-      sectors: ['超精密CNC加工', '装置製造', 'スマート工場自動化'],
-      readMore: '卓越した精度を誇るCNC工作機械とスマートファクトリーソリューションを提供。自動化、デジタル技術、インテリジェントなシステム連携により、超精密ものづくりを支援。'
-    }
-  },
-  {
-    website: 'https://tazmo.co.jp/en/',
-    logo: '/jisc/member-companies/tazmo-logo.png',
-    en: {
-      name: 'TAZMO Co. Ltd.',
-      about: 'Manufactures semiconductor production equipment and automation systems.',
-      sectors: ['Coater/Developer Systems', 'Cleaning Systems', 'Wafer Transfer Equipment', 'Chemical Supply & Recycling'],
-      readMore: 'Develops coater/developer platforms, cleaning equipment, and wafer handling robots. Technologies help improve production efficiency and process stability.'
-    },
-    ja: {
-      name: 'タズモ株式会社',
-      about: '半導体製造装置（前工程・後工程）および搬送自動化システムを開発・製造。',
-      sectors: ['コーター/デベロッパー', '洗浄システム', 'ウェーハ搬送', '薬液供給・回収'],
-      readMore: 'コーター・デベロッパー、洗浄装置、各種基板搬送ロボットなどを供給。生産効率の最大化、プロセスの安定化、ファクトリーオートメーション（FA）を強力に支援。'
-    }
-  },
-  {
-    website: 'https://www.denka.co.jp/eng/',
-    logo: '/jisc/member-companies/demka-logo.jpg',
-    en: {
-      name: 'Denka Co. Ltd.',
-      about: 'Japanese materials and electronics company offering advanced semiconductor packaging and thermal management materials.',
-      sectors: ['Packaging Materials', 'Spherical Silica', 'Thermal Conductive Materials', 'Silicon Nitride Products'],
-      readMore: 'Supplies materials used in packaging, thermal control, and component manufacturing. Product portfolio includes spherical silica and alumina for improved reliability.'
-    },
-    ja: {
-      name: 'デンカ株式会社',
-      about: '先端半導体パッケージングおよび熱管理（放熱）材料を提供する、日本の大手化学・電子材料メーカー。',
-      sectors: ['パッケージング材料', '球状シリカ', '熱伝導材料', '窒化ケイ素製品'],
-      readMore: '半導体パッケージの信頼性を高める球状シリカ・球状アルミナや、高放熱を可能にする金属基板、セラミックス窒化ケイ素製品等の供給により、次世代半導体の性能向上に貢献。'
-    }
-  },
-  {
-    website: 'https://global.kyocera.com/',
-    logo: '/jisc/member-companies/kyocera-logo.png',
-    en: {
-      name: 'Kyocera Corporation',
-      about: 'Provides ceramic and electronic solutions for semiconductor manufacturing and packaging.',
-      sectors: ['Ceramic Packages', 'Fine Ceramic Components', 'Processing Equipment Components', 'Electronic Packaging'],
-      readMore: 'Manufactures ceramic substrates and packages used in wafer processing. Supports miniaturization, high durability, and reliable electronic packaging.'
-    },
-    ja: {
-      name: '京セラ株式会社',
-      about: '半導体製造装置用ファインセラミックス部品や先端半導体パッケージなどの電子ソリューションを提供。',
-      sectors: ['セラミックパッケージ', 'ファインセラミック部品', '装置用部品', '電子パッケージング'],
-      readMore: '前工程装置向けの各種セラミック構造部品や、過酷な環境に耐えるセラミックパッケージ・電子部品を製造。デバイスの超小型化、高耐久性、高信頼性を実現。'
+      name: '企業D',
+      about: 'ITソフトウェアサービスとクラウドソリューションを専門とする、デジタル変革のリーディング企業。',
+      sectors: ['ITサービス', 'クラウドコンピューティング', 'AIソリューション'],
+      readMore: '世界中のビジネス向けに、エンドツーエンドのソフトウェア開発、データ分析、およびエンタープライズ技術統合サービスを提供しています。',
+      state: 'カルナタカ州',
+      products: ['ITソフトウェアサービス'],
+      address: 'インド国カルナタカ州ベンガルール・ブリゲードロード88番地'
     }
   }
 ]
@@ -485,25 +449,90 @@ const CompanyCard = ({ company, locale, jpFont }: { company: Company, locale: st
   const [isExpanded, setIsExpanded] = useState(false)
   const data = locale === 'ja' ? company.ja : company.en
 
+  const hasLogo = company.logo && company.logo.trim() !== ''
+  const initials = data.name ? data.name.substring(0, 2).toUpperCase() : 'CO'
+
+  const objectiveTranslations: Record<string, string> = {
+    'Sale': '販売',
+    'Procurement': '調達',
+    'Joint Venture': '合弁事業',
+    'Technical tie-up': '技術提携',
+    'Other': 'その他'
+  }
+
   return (
-    <motion.div
+    <div
       className={`jisc-company-card ${isExpanded ? 'is-expanded' : ''}`}
-      variants={fadeInUp}
     >
       <div className="jisc-company-main">
-        <div className="jisc-company-logo-wrap">
-          <Image
-            src={company.logo}
-            alt={`${data.name} Logo`}
-            width={120}
-            height={40}
-            className="jisc-company-logo-img"
-          />
+        {/* Badge Row for Side */}
+        <div className="jisc-card-badge-row">
+          <span className={`jisc-side-badge ${company.side.toLowerCase()}`}>
+            {/* <span style={{ marginRight: '0.35rem', fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center' }}>
+              {company.side === 'Japan' ? '🇯🇵' : '🇮🇳'}
+            </span> */}
+            {locale === 'ja'
+              ? (company.side === 'Japan' ? '日本' : 'インド')
+              : company.side
+            }
+          </span>
         </div>
-        <div className="jisc-company-header">
-          <h3 style={jpFont}>{data.name}</h3>
+
+        {/* Logo and Header Row */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.25rem' }}>
+          {/* Logo or placeholder */}
+          {hasLogo ? (
+            <div className="jisc-company-logo-wrap" style={{ width: '80px', height: '50px', padding: '0.5rem', marginBottom: 0, flexShrink: 0 }}>
+              <Image
+                src={company.logo}
+                alt={`${data.name} Logo`}
+                width={80}
+                height={30}
+                className="jisc-company-logo-img"
+                style={{ maxHeight: '40px' }}
+              />
+            </div>
+          ) : (
+            <div className="jisc-card-logo-placeholder" style={{ width: '80px', height: '50px', padding: '0.5rem', fontSize: '1.1rem', marginBottom: 0, flexShrink: 0 }}>
+              {initials}
+            </div>
+          )}
+
+          <div className="jisc-company-header" style={{ marginBottom: 0 }}>
+            <h3 style={{ ...jpFont, fontSize: '1.4rem', margin: 0 }}>{data.name}</h3>
+          </div>
         </div>
+
         <p className="jisc-company-about" style={jpFont}>{data.about}</p>
+
+        {/* Meta Area for State, Objectives, Address */}
+        <div className="jisc-card-meta" style={jpFont}>
+          <div className="jisc-meta-item">
+            <span className="material-symbols-outlined">map</span>
+            <span>
+              {data.state}
+            </span>
+          </div>
+
+          <div className="jisc-meta-item">
+            <span className="material-symbols-outlined">ads_click</span>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem', alignItems: 'center' }}>
+              {company.objectives.map((obj, oIdx) => (
+                <span key={oIdx} className="jisc-objective-pill">
+                  {locale === 'ja' ? (objectiveTranslations[obj] || obj) : obj}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="jisc-meta-item">
+            <span className="material-symbols-outlined">home_pin</span>
+            <span>
+              {/* <strong className="jisc-meta-label">{locale === 'ja' ? '住所:' : 'Address:'}</strong> */}
+              {data.address}
+            </span>
+          </div>
+        </div>
 
         <button
           className="jisc-read-more-btn"
@@ -518,10 +547,19 @@ const CompanyCard = ({ company, locale, jpFont }: { company: Company, locale: st
         </button>
 
         <div className="jisc-company-more">
-          <div className="jisc-company-sectors" style={{ marginBottom: '1.5rem' }}>
+          <div className="jisc-company-sectors" style={{ marginBottom: '1.25rem' }}>
             {data.sectors.map((sector, sIdx) => (
               <span key={sIdx} className="jisc-sector-pill">{sector}</span>
             ))}
+          </div>
+
+          <div className="jisc-card-products" style={{ marginBottom: '1.25rem' }}>
+            <h4 style={jpFont}>{locale === 'ja' ? '主な製品 / 技術' : 'Products & Tech'}</h4>
+            <div className="jisc-products-list">
+              {data.products.map((prod, pIdx) => (
+                <span key={pIdx} className="jisc-product-pill">{prod}</span>
+              ))}
+            </div>
           </div>
 
           <div className="jisc-more-content">
@@ -534,7 +572,7 @@ const CompanyCard = ({ company, locale, jpFont }: { company: Company, locale: st
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -555,6 +593,15 @@ const jsonLd = {
 export default function JISCPage() {
   const { locale } = useLanguage()
   const jpFont = locale === 'ja' ? { fontFamily: 'var(--font-noto-jp)' } : {}
+
+  const [countryFilter, setCountryFilter] = useState<string>('all')
+  const [objectiveFilter, setObjectiveFilter] = useState<string>('all')
+
+  const filteredCompanies = memberCompanies.filter(company => {
+    const matchCountry = countryFilter === 'all' || company.side.toLowerCase() === countryFilter.toLowerCase()
+    const matchObjective = objectiveFilter === 'all' || company.objectives.some(obj => obj.toLowerCase() === objectiveFilter.toLowerCase())
+    return matchCountry && matchObjective
+  })
 
 
   return (
@@ -669,7 +716,7 @@ export default function JISCPage() {
       </motion.section>
 
       {/* ======================== MEMBER COMPANIES ======================== */}
-      <motion.section
+      {/* <motion.section
         className="jisc-companies"
         initial="hidden"
         whileInView="visible"
@@ -696,7 +743,135 @@ export default function JISCPage() {
             />
           ))}
         </div>
+      </motion.section> */}
+
+      {/* ======================== OUR GROUP COMPANIES ======================== */}
+      <motion.section
+        className="jisc-companies"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+      >
+        <motion.div className="jisc-section-header" variants={fadeInUp}>
+          <div className="jisc-tag" style={{ justifyContent: 'center' }}>
+            <span className="jisc-tag-line"></span>
+            <span className="jisc-tag-text" style={jpFont}>{locale === 'ja' ? 'メンバー企業' : 'Member Companies'}</span>
+          </div>
+          <h2 className="jisc-section-title" style={{ ...jpFont, marginBottom: '0.5rem' }}>
+            {locale === 'ja' ? <>半導体<em>エコシステム</em>に関心のある企業</> : <>Companies Interested in <em style={{ color: '#2e3885' }}>Semiconductor</em> Ecosystem</>}
+          </h2>
+        </motion.div>
+
+        {/* ======================== FILTERS SECTION ======================== */}
+        <motion.div className="jisc-filters-container" variants={fadeInUp} style={jpFont}>
+          <div className="jisc-filters-group">
+            <div className="jisc-filter-field">
+              <label>{locale === 'ja' ? '国' : 'Country'}</label>
+              <select
+                className="jisc-filter-select"
+                value={countryFilter}
+                onChange={(e) => setCountryFilter(e.target.value)}
+              >
+                <option value="all">{locale === 'ja' ? 'すべての国' : 'All Countries'}</option>
+                <option value="japan">{locale === 'ja' ? '日本' : 'Japan'}</option>
+                <option value="india">{locale === 'ja' ? 'インド' : 'India'}</option>
+              </select>
+            </div>
+
+            <div className="jisc-filter-field">
+              <label>{locale === 'ja' ? '目的 / 協業分野' : 'Objective'}</label>
+              <select
+                className="jisc-filter-select"
+                value={objectiveFilter}
+                onChange={(e) => setObjectiveFilter(e.target.value)}
+              >
+                <option value="all">{locale === 'ja' ? 'すべての目的' : 'All Objectives'}</option>
+                <option value="sale">{locale === 'ja' ? '販売 (Sale)' : 'Sale'}</option>
+                <option value="procurement">{locale === 'ja' ? '調達 (Procurement)' : 'Procurement'}</option>
+                <option value="joint venture">{locale === 'ja' ? '合弁事業 (Joint Venture)' : 'Joint Venture'}</option>
+                <option value="technical tie-up">{locale === 'ja' ? '技術提携 (Technical tie-up)' : 'Technical tie-up'}</option>
+                <option value="other">{locale === 'ja' ? 'その他 (Other)' : 'Other'}</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="jisc-filters-info">
+            {locale === 'ja' ? (
+              <>該当企業: <span>{filteredCompanies.length}</span> 件</>
+            ) : (
+              <>Found <span>{filteredCompanies.length}</span> companies</>
+            )}
+          </div>
+        </motion.div>
+
+        <div className="jisc-companies-grid" key={`${countryFilter}-${objectiveFilter}`}>
+          {filteredCompanies.map((company) => (
+            <CompanyCard
+              key={company.en.name}
+              company={company}
+              locale={locale}
+              jpFont={jpFont}
+            />
+          ))}
+
+          {/* Persistent Pitch / CTA Card */}
+          <div
+            className="jisc-company-card jisc-cta-card"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+              padding: '2.5rem 2rem',
+              borderRadius: '8px',
+              minHeight: '360px',
+              height: '100%',
+              boxSizing: 'border-box'
+            }}
+          >
+            <span className="material-symbols-outlined" style={{ fontSize: '3rem', color: 'var(--gold)', marginBottom: '1rem' }}>
+              handshake
+            </span>
+            <h3 style={{ ...jpFont, fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.75rem', lineHeight: 1.4, fontFamily: 'var(--font-cormorant)' }}>
+              {locale === 'ja'
+                ? '日印ビジネスエコシステムとつながりませんか？'
+                : 'Want to connect with the India Japan business ecosystem?'
+              }
+            </h3>
+            <p style={{ ...jpFont, fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '2rem', lineHeight: 1.6 }}>
+              {locale === 'ja'
+                ? '企業カードに登録して、紹介パートナーになりましょう。'
+                : 'Become a Featured Industry Partner'
+              }
+            </p>
+            <a
+              href="#contact"
+              className="jisc-btn jisc-btn-primary"
+              style={{
+                width: '100%',
+                justifyContent: 'center',
+                gap: '0.5rem',
+                background: 'var(--gold)',
+                color: '#fff',
+                padding: '0.75rem',
+                border: 'none',
+                borderRadius: '4px',
+                fontWeight: 600,
+                fontSize: '0.9rem',
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center'
+              }}
+            >
+              <span className="material-symbols-outlined" style={{ fontSize: '1.2rem' }}>mail</span>
+              {locale === 'ja' ? 'お問合せ' : 'Contact Us'}
+            </a>
+          </div>
+        </div>
       </motion.section>
+
 
 
       {/* ======================== SUPPORT SERVICES ========================
