@@ -46,10 +46,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://www.npo-jibb.org/logo.webp',
+        url: 'https://www.npo-jibb.org/hero-illustration.webp',
         width: 1200,
         height: 630,
-        alt: 'JIBB Logo'
+        alt: 'JIBB Illustration'
       }
     ]
   },
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'JIBB - Japan India Business Bureau | 日印ビジネス局',
     description: 'Enabling the Next Global Manufacturing Shift. We connect stakeholders, businesses, institutions, and governments to create meaningful partnerships between Japan and India.',
-    images: ['https://www.npo-jibb.org/logo.webp']
+    images: ['https://www.npo-jibb.org/hero-illustration.webp']
   }
 }
 

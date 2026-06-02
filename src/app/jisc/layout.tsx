@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://www.npo-jibb.org/logo.webp',
+        url: 'https://www.npo-jibb.org/jisc/jisc-india-japan.png',
         width: 1200,
         height: 630,
         alt: 'JISC - Japan-India Semiconductor Committee'

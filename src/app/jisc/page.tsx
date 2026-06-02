@@ -584,8 +584,8 @@ const jsonLd = {
   'provider': {
     '@type': 'Organization',
     'name': 'Japan India Business Bureau',
-    'logo': 'https://www.npo-jibb.org/logo.webp'
   },
+  'logo': 'https://www.npo-jibb.org/jisc/jisc-india-japan.png',
   'description': 'Strengthening semiconductor collaboration between Japan and India by connecting Japanese technology companies with India’s growing semiconductor ecosystem.',
   'url': 'https://npo-jibb.org/jisc'
 }
