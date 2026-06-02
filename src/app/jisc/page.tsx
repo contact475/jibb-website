@@ -1206,9 +1206,7 @@ export default function JISCPage() {
                 />
                 <div className="jisc-advisory-overlay">
                   <div className="jisc-advisory-info">
-                    <h3 style={jpFont}>{locale === 'ja' ? member.jaName : member.name}</h3>
-                    <p className="jisc-advisory-role" style={jpFont}>{locale === 'ja' ? member.jaTitle : member.title}</p>
-                    <ul className="jisc-advisory-points">
+                    <ul className="jisc-advisory-points" style={{ borderTop: 'none', paddingTop: 0 }}>
                       {(locale === 'ja' ? member.points.ja : member.points.en).map((point, pIdx) => (
                         <li key={pIdx} style={jpFont}>{point}</li>
                       ))}
@@ -1217,8 +1215,15 @@ export default function JISCPage() {
                 </div>
               </div>
               <div className="jisc-advisory-name-tag">
-                <p style={jpFont}>{locale === 'ja' ? member.jaName : member.name}</p>
-                <span className="material-symbols-outlined">add</span>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  <h3 style={{ ...jpFont, fontFamily: 'var(--font-cormorant)', fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)', margin: 0 }}>
+                    {locale === 'ja' ? member.jaName : member.name}
+                  </h3>
+                  <p className="jisc-advisory-role" style={{ ...jpFont, margin: 0, fontSize: '0.75rem', color: '#d48a3e', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>
+                    {locale === 'ja' ? member.jaTitle : member.title}
+                  </p>
+                </div>
+                {/* <span className="material-symbols-outlined">add</span> */}
               </div>
             </motion.div>
           ))}

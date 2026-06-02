@@ -7698,7 +7698,7 @@ button:focus-visible {
 
 .jisc-advisory-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 2.5rem;
   max-width: 1300px;
   margin: 0 auto;
@@ -7735,8 +7735,8 @@ button:focus-visible {
   background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.4) 100%);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 2rem;
+  justify-content: space-around;
+  padding: 1rem;
   opacity: 0;
   transition: all 0.4s ease;
   backdrop-filter: blur(4px);
@@ -7868,7 +7868,7 @@ button:focus-visible {
   }
 
   .jisc-advisory-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -7878,7 +7878,7 @@ button:focus-visible {
   }
 
   .jisc-advisory-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
