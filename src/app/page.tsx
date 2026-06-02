@@ -19,7 +19,7 @@ const jsonLd = {
   'name': 'Japan India Business Bureau',
   'alternateName': 'NPO JIBB / 日印ビジネス局',
   'url': 'https://npo-jibb.org',
-  'logo': 'https://www.npo-jibb.org/logo.webp',
+  'logo': 'https://www.npo-jibb.org/hero-illustration.webp',
   'description': 'Enabling the Next Global Manufacturing Shift. We connect stakeholders, businesses, institutions, and governments to create meaningful partnerships between Japan and India.',
   'sameAs': [
     'https://www.linkedin.com/company/japan-india-business-bureau'

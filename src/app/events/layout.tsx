@@ -13,10 +13,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://www.npo-jibb.org/logo.webp',
+        url: 'https://www.npo-jibb.org/hero-illustration.webp',
         width: 1200,
         height: 630,
-        alt: 'JIBB Upcoming Events & Seminars'
+        alt: 'JIBB Illustration'
       }
     ]
   },
