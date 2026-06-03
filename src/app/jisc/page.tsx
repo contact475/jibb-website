@@ -671,7 +671,7 @@ export default function JISCPage() {
             </div>
             <div className="jisc-stat-card">
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><span className="jisc-stat-icon material-symbols-outlined">location_on</span>IN</div>
-              <h3 className="jisc-stat-value">JIBB, 6th Floor, 162, Sector 16, Noida, Uttar Pradesh</h3>
+              <h3 className="jisc-stat-value">JIBB, 6th Floor, 162, Sector 136, Arihant Business Centre, Noida, Uttar Pradesh</h3>
               <p className="jisc-stat-label" style={jpFont}>{locale === 'ja' ? '戦略的拠点' : 'Strategic Hub Location'}</p>
             </div>
             <div className="jisc-stat-card">
