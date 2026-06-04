@@ -8,6 +8,19 @@ const nextConfig = {
       },
     ],
   },
+
+  async redirects() {
+    return [
+      {
+        source: "/jisc/:path*",
+        destination: "/",
+        permanent: false,
+      },
+    ];
+  },
+
 };
+
+
 
 export default nextConfig;
