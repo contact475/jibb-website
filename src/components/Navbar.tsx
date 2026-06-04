@@ -56,7 +56,7 @@ export default function Navbar() {
           <li><Link href="/#sectors">{t.nav.strategicSectors}</Link></li>
           <li><Link href="/#innovation">{t.nav.innovationHub}</Link></li>
           <li><Link href="/events">{locale === 'ja' ? 'イベント' : 'Events'}</Link></li>
-          <li><Link href="/jisc">JISC</Link></li>
+          {/* <li><Link href="/jisc">JISC</Link></li> */}
           <li><Link href="/#contact">{t.nav.contact}</Link></li>
         </ul>
 
