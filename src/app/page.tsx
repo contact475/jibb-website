@@ -11,6 +11,7 @@ import {
   InnovationHub,
   CTA,
   Footer,
+  NotifyAll,
 } from '@/components'
 
 const jsonLd = {
@@ -35,6 +36,7 @@ export default function Home() {
       />
       <Navbar />
       <Hero />
+      <NotifyAll />
       <WhoWeAre />
       <Vision />
       <Mission />

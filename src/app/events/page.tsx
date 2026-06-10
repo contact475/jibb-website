@@ -2,10 +2,36 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { useLanguage } from '@/lib/LanguageContext'
 import { Navbar, Footer } from '@/components'
+
+function ParallaxHeader() {
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  })
+  
+  // Parallax: image moves DOWN and fades out as user scrolls past
+  const y = useTransform(scrollYProgress, [0, 1], [0, 120])
+  const opacity = useTransform(scrollYProgress, [0, 0.6, 1], [1, 1, 0])
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.05])
+
+  return (
+    <div ref={ref} className="events-parallax-header">
+      <motion.div
+        className="events-parallax-bg"
+        style={{
+          y,
+          opacity,
+          scale,
+        }}
+      />
+    </div>
+  )
+}
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -17,15 +43,393 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
 }
 
-type EventKey = 'semicon' | 'mobility'
+// Slide from left
+const slideFromLeft = {
+  hidden: { opacity: 0, x: -80 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as const } }
+}
+
+// Slide from right
+const slideFromRight = {
+  hidden: { opacity: 0, x: 80 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as const } }
+}
+
+// Scale up entrance
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1] as const } }
+}
+
+// Stagger children container for scroll-triggered sections
+const staggerOnScroll = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } }
+}
+
+// Program row stagger
+const programRowVariant = {
+  hidden: { opacity: 0 },
+  visible: (i: number) => ({
+    opacity: 1,
+    transition: { duration: 0.5, delay: i * 0.06, ease: [0.33, 1, 0.68, 1] as const }
+  })
+}
+
+// Venue detail row animation
+const venueRowVariant = {
+  hidden: { opacity: 0, x: -30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, delay: i * 0.12, ease: [0.33, 1, 0.68, 1] as const }
+  })
+}
+
+interface ProgramItem {
+  time: string
+  speaker: string
+  org: string
+  topic: string
+  isBreak: boolean
+  isHighlight?: boolean
+  detailsTitle?: string
+  details?: string[]
+}
+
+interface EventLocaleData {
+  tagline: string
+  title: string
+  titleHighlight: string
+  titleEnd: string
+  subtitle: string
+  date: string
+  dateDay: string
+  time: string
+  receptionTime: string
+  venue: string
+  venueAddress: string
+  format: string
+  seminarCapacity: string
+  receptionCapacity: string
+  deadline: string
+  program: ProgramItem[]
+  organizer: string
+  coOrganizers?: string[]
+  specialSupport?: string
+  supporters?: string[]
+  specialCooperation?: string
+  mediaPartner?: string
+  secretariat?: string
+  access?: string
+  airport?: string
+  overview?: string
+  whoShouldAttend?: string[]
+}
+
+interface EventData {
+  id: string
+  en: EventLocaleData
+  ja: EventLocaleData
+  posterEn: string
+  posterJa: string
+  registrationUrl: string
+  mapUrl?: string
+  flyerUrl?: string
+}
+
+type EventKey = 'manufacturing' | 'semicon' | 'mobility'
+
+const getPartnerLogo = (name: string): string | null => {
+  const lowerName = name.toLowerCase()
+  if (lowerName.includes('invest india') || lowerName.includes('インベスト・インディア')) {
+    return '/events/invest_india.png'
+  }
+  if (lowerName.includes('japan india business bureau') || lowerName.includes('日本インドビジネスビューロー') || lowerName.includes('jibb')) {
+    return '/events/japan_india_business_bureau.jpg'
+  }
+  if (lowerName.includes('japan-india consulting') || lowerName.includes('japan india consulting') || lowerName.includes('日印コンサルティング') || lowerName.includes('jic')) {
+    return '/events/japan_india_consulting_jp_logo.jpg'
+  }
+  if (lowerName.includes('machine tool') || lowerName.includes('工作機械') || lowerName.includes('jmtba')) {
+    return '/events/JMTBA.jpg'
+  }
+  if (lowerName.includes('semiconductor equipment') || lowerName.includes('半導体製造装置') || lowerName.includes('seaj')) {
+    return '/events/SEAJ.gif'
+  }
+  if (lowerName.includes('machinery federation') || lowerName.includes('機械工業連合') || lowerName.includes('jmf')) {
+    return '/events/JMF.png'
+  }
+  if (lowerName.includes('robot') || lowerName.includes('ロボット') || lowerName.includes('jara') || lowerName.includes('jra')) {
+    return '/events/JRA.png'
+  }
+  if (lowerName.includes('iesa') || lowerName.includes('electronics & semiconductor')) {
+    return '/jisc/govt-backed/iesa-logo.webp'
+  }
+  if (lowerName.includes('jspe') || lowerName.includes('precision engineering')) {
+    return '/jisc/jspe-logo.png'
+  }
+  if (lowerName.includes('jisc') || lowerName.includes('semiconductor committee')) {
+    return '/jisc/jisc-india-japan.png'
+  }
+  return null
+}
 
 export default function EventsPage() {
   const { locale } = useLanguage()
-  const [activeEvent, setActiveEvent] = useState<EventKey>('semicon')
+  const [activeEvent, setActiveEvent] = useState<EventKey>('manufacturing')
   const [posterLang, setPosterLang] = useState<'en' | 'ja'>('en')
+  const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({})
   const jpFont = locale === 'ja' ? { fontFamily: 'var(--font-noto-jp)' } : {}
 
+  const toggleRow = (eventKey: string, index: number) => {
+    const key = `${eventKey}-${index}`
+    setExpandedRows(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }))
+  }
+
   const events = {
+    manufacturing: {
+      id: 'manufacturing',
+      en: {
+        tagline: "Unlocking India's Manufacturing Growth Story (3 July 2026)",
+        title: "Unlocking India's",
+        titleHighlight: "Manufacturing Growth",
+        titleEnd: "Story",
+        subtitle: "Investment, Partnerships, and Market Entry Opportunities for Japanese Manufacturing Companies",
+        date: "Friday, July 3, 2026",
+        dateDay: "Friday",
+        time: "13:30 - 17:00",
+        receptionTime: "16:10 - 16:30",
+        venue: "Ginza Blossom (Chuo City Central Hall)",
+        venueAddress: "7th Floor, Margaret, 2-15-6 Ginza, Chuo-ku, Tokyo 104-0061 (TEL: 03-3542-8585)",
+        access: "1-minute walk from Exit 1 of Shintomicho Station (Tokyo Metro Yurakucho Line) | 6-minute walk from Exit 5 of Higashi-Ginza Station (Tokyo Metro Hibiya Line and Toei Asakusa Line)",
+        format: "In-Person (Free of Charge)",
+        seminarCapacity: "80 Particpants (First-Come, First-Served)",
+        receptionCapacity: "",
+        deadline: "July 3, 2026",
+        overview: "India is emerging as one of the world's most attractive manufacturing destinations, supported by strong economic growth, expanding domestic demand, competitive production capabilities, and proactive government policies.\n\nThis seminar will provide Japanese manufacturers with practical insights into investment opportunities, policy incentives, partnership models, and market entry pathways across key industrial sectors.\n\nThe session is specially designed for companies engaged in machine tools, semiconductor manufacturing equipment, factory automation, industrial machinery, robotics, precision engineering, and advanced manufacturing technologies.",
+        whoShouldAttend: [
+          "Machine Tools",
+          "Industrial Machinery",
+          "Semiconductor Manufacturing Equipment",
+          "Factory Automation",
+          "Robotics",
+          "Precision Engineering",
+          "Advanced Manufacturing Technologies"
+        ],
+        program: [
+          { time: '13:30-14:00', speaker: '', org: '', topic: 'Registration and Networking', isBreak: true },
+          {
+            time: '14:00-14:10',
+            speaker: 'Invest India & JIBB Representatives',
+            org: 'Invest India / JIBB',
+            topic: 'Welcome Remarks',
+            isBreak: false,
+            detailsTitle: 'Overview',
+            details: [
+              'India Japan industrial cooperation',
+              'Objectives of the seminar'
+            ]
+          },
+          {
+            time: '14:10-14:55',
+            speaker: 'Invest India Representative',
+            org: 'Invest India',
+            topic: "India's Manufacturing Opportunity: Why India, Why Now",
+            isBreak: false,
+            detailsTitle: 'Topics Covered',
+            details: [
+              "Investment opportunities in India's manufacturing sector",
+              "Growth outlook for machine tools and industrial machinery",
+              "Semiconductor ecosystem development and opportunities",
+              "Government incentives and policy support",
+              "Industrial partnerships and joint venture opportunities",
+              "Support available through Invest India and JIBB for market entry"
+            ]
+          },
+          {
+            time: '14:55-15:25',
+            speaker: 'JIBB Representative',
+            org: 'JIBB',
+            topic: 'From Strategy to Setup: How JIBB Supports Successful Market Entry into India',
+            isBreak: false,
+            detailsTitle: 'Topics Covered',
+            details: [
+              "Selecting the right manufacturing location",
+              "Identifying strategic joint ventures and business partners",
+              "Understanding central and state government incentive schemes",
+              "Regulatory requirements and compliance roadmap",
+              "Licenses, approvals, and clearances required for manufacturing operations",
+              "End to end project execution support",
+              "Case study of a Japanese company's successful entry into India"
+            ]
+          },
+          {
+            time: '15:25-15:50',
+            speaker: 'Association Speakers',
+            org: 'JMTBA / SEAJ / JMF / JARA',
+            topic: 'Industry Perspectives from Japanese Manufacturing Associations',
+            isBreak: false,
+            detailsTitle: 'Topics',
+            details: [
+              "Industry outlook",
+              "Expectations from the Indian market",
+              "Areas for India Japan industrial collaboration"
+            ]
+          },
+          {
+            time: '15:50-16:10',
+            speaker: 'Invest India, JIBB & Association Reps',
+            org: 'Panel',
+            topic: 'Panel Discussion and Open Q&A',
+            isBreak: false,
+            detailsTitle: 'Discussion Themes',
+            details: [
+              "Opportunities and challenges for Japanese manufacturers in India",
+              "Building successful India Japan partnerships",
+              "Future outlook for manufacturing collaboration"
+            ]
+          },
+          { time: '16:10-16:30', speaker: '', org: '', topic: 'Networking Session and Individual Consultations', isBreak: false, isHighlight: true },
+          { time: '16:30', speaker: 'JIBB Representative', org: 'JIBB', topic: 'Closing Remarks', isBreak: false }
+        ],
+        organizer: "Invest India (Government of India)",
+        coOrganizers: ["NPO Japan India Business Bureau (JIBB)"],
+        specialSupport: "Japan-India Consulting Co., Ltd. (Secretariat)",
+        supporters: [
+          "Japan Machine Tool Builders' Association",
+          "Semiconductor Equipment Association of Japan",
+          "Japan Machinery Federation",
+          "Japan Robot Association"
+        ],
+        specialCooperation: "",
+        mediaPartner: "",
+        secretariat: ""
+      },
+      ja: {
+        tagline: "インド製造業の成長ストーリー（2026年7月3日）",
+        title: "インド製造業の",
+        titleHighlight: "成長ストーリーを紐解く",
+        titleEnd: "セミナー",
+        subtitle: "日本製造企業向け投資・パートナーシップ・市場参入機会",
+        date: "2026年7月3日（金）",
+        dateDay: "金曜日",
+        time: "14:00〜17:00",
+        receptionTime: "16:10〜16:30",
+        venue: "銀座ブロッサム（中央会館）",
+        venueAddress: "〒104-0061 東京都中央区銀座2-15-6 7階 マーガレット (TEL: 03-3542-8585)",
+        access: "新富町駅（東京メトロ有楽町線）出口1から徒歩1分 | 東銀座駅（東京メトロ日比谷線・都営浅草線）出口5から徒歩6分",
+        format: "対面（会場開催）",
+        seminarCapacity: "80名",
+        receptionCapacity: "",
+        deadline: "7月3日（金）",
+        overview: "インドは、力強い経済成長、拡大する国内需要、競争力のある生産能力、積極的な政府の政策に支えられ、世界で最も魅力的な製造業の目的地の一つとして浮上しています。\n\n本セミナーでは、日本の製造業企業に向けて、主要産業分野における投資機会、政策インセンティブ、パートナーシップモデル、市場参入経路に関する実用的な洞察を提供します。\n\n本セッションは、工作機械、半導体製造装置、ファクトリーオートメーション、産業機械、ロボット工学、精密機械工学、および高度な製造技術に携わる企業向けに特別に設計されています。",
+        whoShouldAttend: [
+          "工作機械",
+          "産業機械",
+          "半導体製造装置",
+          "ファクトリーオートメーション",
+          "ロボット工学",
+          "精密工学",
+          "先端製造技術"
+        ],
+        program: [
+          { time: '13:30-14:00', speaker: '', org: '', topic: '受付・ネットワーキング', isBreak: true },
+          {
+            time: '14:00-14:10',
+            speaker: 'インベスト・インディア / JIBB 代表者',
+            org: 'Invest India / JIBB',
+            topic: '開会挨拶・本セミナーの目的',
+            isBreak: false,
+            detailsTitle: '概要',
+            details: [
+              '日印産業協力の現状と方向性',
+              '本セミナーの目的'
+            ]
+          },
+          {
+            time: '14:10-14:55',
+            speaker: 'インベスト・インディア 代表者',
+            org: 'Invest India',
+            topic: 'インドの製造業における機会：なぜ今、インドなのか',
+            isBreak: false,
+            detailsTitle: '主なテーマ',
+            details: [
+              'インド製造業セクターにおける投資機会',
+              '工作機械および産業機械の成長見通し',
+              '半導体エコシステムの開発と機会',
+              '政府のインセンティブと政策支援',
+              '産業パートナーシップおよび合弁事業の機会',
+              'インベスト・インディアおよびJIBBによる市場参入支援'
+            ]
+          },
+          {
+            time: '14:55-15:25',
+            speaker: 'JIBB 代表者',
+            org: 'JIBB',
+            topic: '戦略から設立まで：JIBBが支援するインド市場への進出成功ロードマップ',
+            isBreak: false,
+            detailsTitle: '主なテーマ',
+            details: [
+              '適切な製造拠点の選定',
+              '戦略的合弁パートナーおよびビジネスパートナーの特定',
+              '中央政府および州政府のインセンティブ制度の理解',
+              '規制要件とコンプライアンス・ロードマップ',
+              '製造操業に必要な許認可・承認手続き',
+              'エンドツーエンドのプロジェクト実行支援',
+              '日本企業のインド進出成功事例ケーススタディ'
+            ]
+          },
+          {
+            time: '15:25-15:50',
+            speaker: '各業界団体 代表者',
+            org: 'JMTBA / SEAJ / JMF / JARA',
+            topic: '日本の製造業関連団体からの業界動向・展望',
+            isBreak: false,
+            detailsTitle: 'トピック',
+            details: [
+              '業界の展望・ロードマップ',
+              'インド市場への期待',
+              '日印産業協力の重点分野'
+            ]
+          },
+          {
+            time: '15:50-16:10',
+            speaker: 'インベスト・インディア、JIBB、業界団体代表者',
+            org: 'パネルディスカッションと質疑応答',
+            isBreak: false,
+            detailsTitle: 'ディスカッションテーマ',
+            details: [
+              '在印日本系製造企業の機会と課題',
+              '日印パートナーシップ構築の成功要因',
+              '製造業における今後の協力関係の展望'
+            ]
+          },
+          { time: '16:10-16:30', speaker: '', org: '', topic: 'ネットワーキング・個別相談会', isBreak: false, isHighlight: true },
+          { time: '16:30', speaker: 'JIBB 代表者', org: 'JIBB', topic: '閉会挨拶', isBreak: false }
+        ],
+        organizer: "インベスト・インディア（インド政府）",
+        coOrganizers: ["NPO法人 日本インドビジネスビューロー（JIBB）"],
+        specialSupport: "日印コンサルティング株式会社",
+        supporters: [
+          "一般社団法人日本工作機械工業会",
+          "一般社団法人日本半導体製造装置協会",
+          "一般社団法人日本機械工業連合会",
+          "一般社団法人日本ロボット工業会"
+        ],
+        specialCooperation: "",
+        mediaPartner: "",
+        secretariat: ""
+      },
+      posterEn: '/events/manufacturing-2026-en.png',
+      posterJa: '/events/manufacturing-2026-ja.jpeg',
+      registrationUrl: 'https://forms.office.com/r/d7tMkBLaq8',
+      mapUrl: 'https://www.google.com/maps/place/Ginza+Blossom/@35.6705574,139.771239,17z/data=!3m1!4b1!4m6!3m5!1s0x60188be1c5545555:0xe1ec40d7c71d9d95!8m2!3d35.6705574!4d139.7738139!16s%2Fg%2F11b6d13v8s',
+      flyerUrl: '/events/JIBB_Event_3_July_2026.pdf'
+    },
     semicon: {
       id: 'semicon',
       en: {
@@ -192,9 +596,39 @@ export default function EventsPage() {
     }
   }
 
-  const activeEventData = events[activeEvent]
-  const t = activeEventData[locale]
+  const activeEventData = events[activeEvent] as unknown as EventData
+  const t = activeEventData[locale as 'en' | 'ja']
   const currentPoster = posterLang === 'ja' ? activeEventData.posterJa : activeEventData.posterEn
+
+  const getEventPartnerLogos = () => {
+    const names: string[] = []
+    if (t.organizer) names.push(t.organizer)
+    if (t.coOrganizers) names.push(...t.coOrganizers)
+    if (t.specialSupport) names.push(t.specialSupport)
+    if (t.supporters) names.push(...t.supporters)
+    if (t.specialCooperation) names.push(t.specialCooperation)
+    if (t.mediaPartner) names.push(t.mediaPartner)
+    if (t.secretariat) names.push(t.secretariat)
+
+    const uniqueLogos: { name: string; src: string }[] = []
+    const seen = new Set<string>()
+
+    names.forEach(name => {
+      const logo = getPartnerLogo(name)
+      if (logo && !seen.has(logo)) {
+        seen.add(logo)
+        uniqueLogos.push({ name, src: logo })
+      }
+    })
+
+    return uniqueLogos
+  }
+
+  const partnerLogos = getEventPartnerLogos()
+  // Ensure we have at least 15 items in the marquee list for smooth infinite scrolling
+  const marqueeItems = partnerLogos.length > 0
+    ? Array(Math.ceil(15 / partnerLogos.length)).fill(partnerLogos).flat()
+    : []
 
   const content = {
     en: {
@@ -259,6 +693,14 @@ export default function EventsPage() {
       <div className="events-tab-bar">
         <div className="events-tab-container">
           <button
+            className={`events-tab ${activeEvent === 'manufacturing' ? 'active manufacturing' : ''}`}
+            onClick={() => setActiveEvent('manufacturing')}
+            style={jpFont}
+          >
+            <span className="material-symbols-outlined">precision_manufacturing</span>
+            <span>Manufacturing 2026</span>
+          </button>
+          <button
             className={`events-tab ${activeEvent === 'semicon' ? 'active semicon' : ''}`}
             onClick={() => setActiveEvent('semicon')}
             style={jpFont}
@@ -276,6 +718,11 @@ export default function EventsPage() {
           </button>
         </div>
       </div>
+
+      {/* Parallax Header Section (Only for Manufacturing 2026 tab) */}
+      {activeEvent === 'manufacturing' && (
+        <ParallaxHeader />
+      )}
 
       {/* Hero Section - Editorial Split Style */}
       <motion.section
@@ -303,7 +750,7 @@ export default function EventsPage() {
               href={activeEventData.registrationUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="events-btn events-btn-primary"
+              className="events-btn events-btn-register"
             >
               <span className="material-symbols-outlined">edit_note</span>
               {labels.register}
@@ -315,6 +762,17 @@ export default function EventsPage() {
               <span className="material-symbols-outlined">schedule</span>
               {labels.viewProgram}
             </a>
+            {activeEventData.flyerUrl && (
+              <a
+                href={activeEventData.flyerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="events-btn events-btn-secondary"
+              >
+                <span className="material-symbols-outlined">picture_as_pdf</span>
+                {locale === 'ja' ? 'チラシ (PDF)' : 'Brochure (PDF)'}
+              </a>
+            )}
           </div>
         </motion.div>
 
@@ -350,12 +808,83 @@ export default function EventsPage() {
         </motion.div>
       </motion.section>
 
+      {/* Overview and Who Should Attend Section */}
+      {(t.overview || t.whoShouldAttend) && (
+        <section className="events-overview-container">
+          {t.overview && (
+            <motion.div
+              className="events-overview-left"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={slideFromLeft}
+            >
+              <h3 style={jpFont}>{locale === 'ja' ? 'イベント概要' : 'Event Overview'}</h3>
+              <div className="events-overview-text" style={jpFont}>
+                {t.overview}
+              </div>
+            </motion.div>
+          )}
+          {t.whoShouldAttend && t.whoShouldAttend.length > 0 && (
+            <motion.div
+              className="events-overview-right"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={slideFromRight}
+            >
+              <h3 style={jpFont}>{locale === 'ja' ? '対象となる企業' : 'Who Should Attend'}</h3>
+              <motion.ul className="events-attendee-list" variants={staggerOnScroll} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
+                {t.whoShouldAttend.map((item: string, idx: number) => (
+                  <motion.li key={idx} className="events-attendee-item" style={jpFont} variants={fadeInUp}>
+                    <span className="material-symbols-outlined">check_circle</span>
+                    <span>{item}</span>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </motion.div>
+          )}
+        </section>
+      )}
+
+      {/* PDF Viewer Section */}
+      {/* {activeEventData.flyerUrl && (
+        <section className="events-pdf-section">
+          <div className="events-pdf-header">
+            <h3 style={jpFont}>{locale === 'ja' ? 'イベントフライヤー' : 'Event Flyer'}</h3>
+            <a
+              href={activeEventData.flyerUrl}
+              download
+              className="events-pdf-download-btn"
+              title={locale === 'ja' ? 'ダウンロード' : 'Download PDF'}
+            >
+              <span className="material-symbols-outlined">download</span>
+              <span>{locale === 'ja' ? 'ダウンロード' : 'Download'}</span>
+            </a>
+          </div>
+          <div className="events-pdf-viewer">
+            <iframe
+              src={`${activeEventData.flyerUrl}#toolbar=0&navpanes=0&scrollbar=1`}
+              title={locale === 'ja' ? 'イベントフライヤー' : 'Event Flyer'}
+              className="events-pdf-iframe"
+            />
+          </div>
+        </section>
+      )} */}
+
       {/* Program Section - Table Style */}
-      <section className="events-program" id="program">
-        <div className="events-section-header">
+      <motion.section
+        className="events-program"
+        id="program"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        variants={staggerOnScroll}
+      >
+        <motion.div className="events-section-header" variants={fadeInUp}>
           <h2 className="events-section-title" style={jpFont}>{labels.programTitle}</h2>
           <span className="events-section-date">{t.date}</span>
-        </div>
+        </motion.div>
 
         <div className="events-table-header">
           <span>{locale === 'ja' ? '時間' : 'Time'}</span>
@@ -364,107 +893,179 @@ export default function EventsPage() {
         </div>
 
         <div className="events-program-table">
-          {t.program.map((item, index) => (
-            <div
-              key={index}
-              className={`events-table-row ${item.isBreak ? 'minimal' : ''} ${item.isHighlight ? 'highlight' : ''}`}
-            >
-              <div className="events-table-time">{item.time}</div>
-              <div className="events-table-content">
-                <h4 className="events-table-topic" style={jpFont}>{item.topic}</h4>
-                {item.speaker && <p className="events-table-speaker"><strong>{item.speaker}</strong></p>}
-              </div>
-              <div className="events-table-org">
-                {item.org && <span className="events-org-badge">{item.org}</span>}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+          {t.program.map((item, index) => {
+            const hasDetails = !!item.details && item.details.length > 0
+            const isExpanded = !!expandedRows[`${activeEvent}-${index}`]
 
-      {/* Organizers Section - Carousel Style */}
-      <section className="events-organizers">
-        <div className="events-organizers-header">
-          <div className="events-organizers-header-left">
-            <p className="events-organizers-tag">{locale === 'ja' ? 'パートナー' : 'Our Partners'}</p>
-            <h2 className="events-organizers-title" style={jpFont}>{labels.organizersTitle}</h2>
+            return (
+              <motion.div
+                key={index}
+                className={`events-table-row ${item.isBreak ? 'minimal' : ''} ${item.isHighlight ? 'highlight' : ''} ${hasDetails ? 'collapsible' : ''} ${isExpanded ? 'expanded' : ''}`}
+                onClick={() => hasDetails && toggleRow(activeEvent, index)}
+                style={{ '--card-index': index, ...(hasDetails ? { cursor: 'pointer' } : {}) } as React.CSSProperties}
+                custom={index}
+                variants={programRowVariant}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                <div className="events-table-time">{item.time}</div>
+                <div className="events-table-content">
+                  <div className="events-table-topic-wrapper">
+                    <h4 className="events-table-topic" style={jpFont}>{item.topic}</h4>
+                    {hasDetails && (
+                      <span className={`material-symbols-outlined dropdown-indicator ${isExpanded ? 'rotated' : ''}`}>
+                        expand_more
+                      </span>
+                    )}
+                  </div>
+                  {item.speaker && <p className="events-table-speaker"><strong>{item.speaker}</strong></p>}
+
+                  {hasDetails && (
+                    <motion.div
+                      initial={false}
+                      animate={{ height: isExpanded ? 'auto' : 0, opacity: isExpanded ? 1 : 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      style={{ overflow: 'hidden' }}
+                      className="events-table-details-wrapper"
+                    >
+                      <div className="events-table-details" onClick={(e) => e.stopPropagation()}>
+                        <p className="events-details-title" style={jpFont}><strong>{item.detailsTitle}:</strong></p>
+                        <ul className="events-details-list">
+                          {item.details?.map((detail, dIdx) => (
+                            <li key={dIdx} style={jpFont}>{detail}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+                <div className="events-table-org">
+                  {item.org && <span className="events-org-badge">{item.org}</span>}
+                </div>
+              </motion.div>
+            )
+          })}
+        </div>
+      </motion.section>
+
+      {/* Partners Marquee Section */}
+      <motion.section
+        className="events-partners-section"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={scaleIn}
+      >
+        <motion.div className="events-partners-section-header" variants={fadeInUp}>
+          <p className="events-banner-tag">{locale === 'ja' ? 'パートナー' : 'Our Partners'}</p>
+          <h2 className="events-banner-title" style={jpFont}>{labels.organizersTitle}</h2>
+        </motion.div>
+
+        <div className="events-partners-marquee">
+          <div className="events-partners-track">
+            {marqueeItems.map((logo, index) => (
+              <div key={index} className="events-partner-logo-item">
+                <Image
+                  src={logo.src}
+                  alt={logo.name}
+                  width={200}
+                  height={80}
+                  className="events-partner-marquee-img"
+                />
+              </div>
+            ))}
           </div>
         </div>
+      </motion.section>
 
-
-        {/* Partners Strip */}
-        <div className="events-partners-strip">
-          <div className="events-partners-inner">
-            <div className="events-partners-header-bar">
-              <h3 className="events-partners-bar-title" style={jpFont}>{locale === 'ja' ? 'イベントパートナー' : 'Event Partners'}</h3>
-              <span className="events-partners-line"></span>
+      {/* Enquiries Section */}
+      <section className="events-enquiries-section">
+        <div className="events-contact-inner">
+          <motion.div
+            className="events-contact-header"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            variants={fadeInUp}
+          >
+            <div className="events-contact-icon">
+              <span className="material-symbols-outlined">mail</span>
             </div>
-
-            <div className="events-partners-grid">
-              <div className="events-partner-card organizer">
-                <p className="events-card-label">{labels.organizer}</p>
-                <p className="events-card-name">{t.organizer}</p>
-              </div>
-
-              {t.coOrganizers && t.coOrganizers.length > 0 && (
-                <div className="events-partner-card">
-                  <p className="events-card-label">{labels.coOrganizers}</p>
-                  <div className="events-card-names">
-                    {t.coOrganizers.map((org, idx) => (
-                      <p key={idx} className="events-card-name">{org}</p>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <div className="events-partner-card">
-                <p className="events-card-label">{labels.specialSupport}</p>
-                <p className="events-card-name">{t.specialSupport}</p>
-              </div>
-
-              {t.supporters && t.supporters.length > 0 && (
-                <div className="events-partner-card">
-                  <p className="events-card-label">{labels.supporters}</p>
-                  <div className="events-card-names">
-                    {t.supporters.map((org, idx) => (
-                      <p key={idx} className="events-card-name">{org}</p>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <div className="events-partner-card">
-                <p className="events-card-label">{labels.specialCoop}</p>
-                <p className="events-card-name">{t.specialCooperation}</p>
-              </div>
-
-              <div className="events-partner-card">
-                <p className="events-card-label">{labels.mediaPartner}</p>
-                <p className="events-card-name">{t.mediaPartner}</p>
-              </div>
-
-              {t.secretariat && (
-                <div className="events-partner-card">
-                  <p className="events-card-label">{labels.secretariat}</p>
-                  <p className="events-card-name">{t.secretariat}</p>
-                </div>
-              )}
+            <div>
+              <h3 className="events-contact-title" style={jpFont}>
+                {locale === 'ja' ? 'お問合せ' : 'Enquiries'}
+              </h3>
+              <p className="events-contact-subtitle" style={jpFont}>
+                {locale === 'ja' ? '主催：日印コンサルティング株式会社' : 'Organised by: Japan-India Consulting Co., Ltd.'}
+              </p>
             </div>
+          </motion.div>
+
+          <div className="events-contact-grid">
+            <motion.div
+              className="events-contact-person"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={slideFromLeft}
+            >
+              <h4 className="events-person-name" style={jpFont}>{locale === 'ja' ? '安井' : 'Yasui'}</h4>
+              <div className="events-person-detail">
+                <span className="material-symbols-outlined">phone</span>
+                <a href="tel:090-9325-3456">090-9325-3456</a>
+              </div>
+              <div className="events-person-detail">
+                <span className="material-symbols-outlined">mail</span>
+                <a href="mailto:yasui@ji-consulting.jp">yasui@ji-consulting.jp</a>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="events-contact-person"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={slideFromRight}
+            >
+              <h4 className="events-person-name" style={jpFont}>{locale === 'ja' ? '橋倉' : 'Hashikura'}</h4>
+              <div className="events-person-detail">
+                <span className="material-symbols-outlined">phone</span>
+                <a href="tel:080-6516-4331">080-6516-4331</a>
+              </div>
+              <div className="events-person-detail">
+                <span className="material-symbols-outlined">mail</span>
+                <a href="mailto:trade@ji-consulting.jp">trade@ji-consulting.jp</a>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Venue Section - Full Bleed Style */}
       <section className="events-venue">
-        <div className="events-venue-banner">
+        <motion.div
+          className="events-venue-banner"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          variants={scaleIn}
+        >
           <p className="events-banner-tag">{locale === 'ja' ? '会場・アクセス' : 'Location & Access'}</p>
           <h2 className="events-banner-title" style={jpFont}>{labels.venueTitle}</h2>
           <p className="events-venue-name-hero">{t.venue}</p>
-        </div>
+        </motion.div>
 
         <div className="events-venue-split">
           <div className="events-venue-details">
-            <div className="events-detail-row">
+            <motion.div
+              className="events-detail-row"
+              custom={0}
+              variants={venueRowVariant}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
               <div className="events-detail-icon">
                 <span className="material-symbols-outlined">location_on</span>
               </div>
@@ -473,7 +1074,7 @@ export default function EventsPage() {
                 <p className="events-detail-value" style={jpFont}>{t.venue}</p>
                 <p className="events-detail-sub">{t.venueAddress}</p>
                 <a
-                  href="https://maps.google.com"
+                  href={activeEventData.mapUrl || "https://maps.google.com"}
                   className="events-map-link"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -482,30 +1083,60 @@ export default function EventsPage() {
                   <span className="material-symbols-outlined">arrow_forward</span>
                 </a>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="events-detail-row">
+            <motion.div
+              className="events-detail-row"
+              custom={1}
+              variants={venueRowVariant}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
               <div className="events-detail-icon">
                 <span className="material-symbols-outlined">train</span>
               </div>
               <div className="events-detail-content">
                 <p className="events-detail-label">{locale === 'ja' ? 'アクセス' : 'Access'}</p>
-                <p className="events-detail-value">{locale === 'ja' ? '最寄り駅から徒歩5分' : '5 min walk from nearest station'}</p>
+                {t.access ? (
+                  t.access.split('|').map((item: string, idx: number) => (
+                    <p key={idx} className="events-detail-value" style={idx > 0 ? { marginTop: '0.35rem' } : {}}>
+                      {item.trim()}
+                    </p>
+                  ))
+                ) : (
+                  <p className="events-detail-value">
+                    {locale === 'ja' ? '最寄り駅から徒歩5分' : '5 min walk from nearest station'}
+                  </p>
+                )}
               </div>
-            </div>
+            </motion.div>
 
-            <div className="events-detail-row">
+            <motion.div
+              className="events-detail-row"
+              custom={2}
+              variants={venueRowVariant}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
               <div className="events-detail-icon">
                 <span className="material-symbols-outlined">flight</span>
               </div>
               <div className="events-detail-content">
                 <p className="events-detail-label">{locale === 'ja' ? '空港から' : 'From Airport'}</p>
-                <p className="events-detail-value">{locale === 'ja' ? '成田から約60分、羽田から約30分' : '~60 min from Narita, ~30 min from Haneda'}</p>
+                <p className="events-detail-value">{t.airport || (locale === 'ja' ? '成田から約60分、羽田から約30分' : '~60 min from Narita, ~30 min from Haneda')}</p>
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="events-travel-section">
+          <motion.div
+            className="events-travel-section"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={slideFromRight}
+          >
             <div className="events-travel-header">
               <p className="events-travel-label">{locale === 'ja' ? '海外からお越しの方へ' : 'For International Attendees'}</p>
               <p className="events-travel-title" style={jpFont}>{labels.travelDesc}</p>
@@ -518,11 +1149,17 @@ export default function EventsPage() {
               className="events-travel-map"
               style={{ width: '100%', height: 'auto' }}
             />
-          </div>
+          </motion.div>
         </div>
 
         {/* Contact Footer */}
-        <div className="events-contact-footer">
+        <motion.div
+          className="events-contact-footer"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="events-contact-inner">
             <div className="events-contact-left">
               <div className="events-contact-icon">
@@ -535,7 +1172,8 @@ export default function EventsPage() {
             </div>
             <a href={`mailto:${labels.contactEmail}`} className="events-contact-email">{labels.contactEmail}</a>
           </div>
-        </div>
+        </motion.div>
+
       </section>
 
       <Footer />
