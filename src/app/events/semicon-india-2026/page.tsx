@@ -13,19 +13,27 @@ export const metadata: Metadata = {
     'IESA JIBB seminar', 'Japan India semiconductor', 'CMP committee',
     'インド半導体市場', 'セミコンインディア2026', 'ジャパンパビリオン'
   ],
-  alternates: { canonical: `${BASE}/events/${SLUG}` },
+  alternates: {
+    canonical: `${BASE}/events/${SLUG}`,
+    languages: {
+      'en': `${BASE}/events/${SLUG}`,
+      'ja': `${BASE}/events/${SLUG}`,
+      'x-default': `${BASE}/events/${SLUG}`,
+    }
+  },
   openGraph: {
-    title: "Semicon India 2026 — Semiconductor Market Outlook Seminar | JIBB",
-    description: "1st Exhibition Briefing & Semiconductor Market Outlook Seminar — April 28, 2026 · Plaza F, Tokyo. Hybrid event by IESA & JIBB.",
+    title: "Semicon India 2026 — Semiconductor Market Outlook Seminar | JIBB | セミコンインデイ2026",
+    description: "1st Exhibition Briefing & Semiconductor Market Outlook Seminar — April 28, 2026 · Plaza F, Tokyo. Hybrid event by IESA & JIBB. インド半導体市場セミナー・ジャパンパビリオン出展説明会。",
     url: `${BASE}/events/${SLUG}`,
     siteName: 'JIBB',
+    locale: 'ja_JP',
     type: 'website',
-    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'Semicon India 2026 Seminar' }]
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'Semicon India 2026 Seminar | セミコンインデイ2026セミナー' }]
   },
   twitter: {
     card: 'summary_large_image',
     title: "Semicon India 2026 Exhibition Briefing | JIBB",
-    description: "April 28, 2026 · Plaza F, Tokyo. India semiconductor market outlook and Japan Pavilion briefing.",
+    description: "April 28, 2026 · Plaza F, Tokyo. India semiconductor market outlook and Japan Pavilion briefing. インド半導体市場・ジャパンパビリオン出展説明。",
     images: [OG_IMAGE]
   }
 }

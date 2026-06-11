@@ -15,20 +15,26 @@ export const metadata: Metadata = {
     'インド製造業セミナー', '日印製造業', 'インド投資'
   ],
   alternates: {
-    canonical: `${BASE}/events/${SLUG}`
+    canonical: `${BASE}/events/${SLUG}`,
+    languages: {
+      'en': `${BASE}/events/${SLUG}`,
+      'ja': `${BASE}/events/${SLUG}`,
+      'x-default': `${BASE}/events/${SLUG}`,
+    }
   },
   openGraph: {
-    title: "India–Japan Manufacturing Collaboration 2026 | Seminar",
-    description: "Unlocking India's Manufacturing Growth Story — July 3, 2026 · Ginza Blossom, Tokyo. Free seminar for Japanese manufacturing companies.",
+    title: "India–Japan Manufacturing Collaboration 2026 | Seminar | 日印製造業セミナー",
+    description: "Unlocking India's Manufacturing Growth Story — July 3, 2026 · Ginza Blossom, Tokyo. Free seminar for Japanese manufacturing companies. インド製造業投賄機会セミナー。",
     url: `${BASE}/events/${SLUG}`,
     siteName: 'JIBB',
+    locale: 'ja_JP',
     type: 'website',
-    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'India Japan Manufacturing Collaboration 2026' }]
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'India Japan Manufacturing Collaboration 2026 | 日印製造業連携2026' }]
   },
   twitter: {
     card: 'summary_large_image',
     title: "India–Japan Manufacturing Collaboration 2026 | JIBB",
-    description: "July 3, 2026 · Ginza Blossom, Tokyo. Free seminar for Japanese manufacturers exploring India.",
+    description: "July 3, 2026 · Ginza Blossom, Tokyo. Free seminar for Japanese manufacturers exploring India. インド製造業参入セミナー。",
     images: [OG_IMAGE]
   }
 }

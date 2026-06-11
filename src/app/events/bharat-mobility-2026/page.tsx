@@ -13,19 +13,27 @@ export const metadata: Metadata = {
     'Japan India automotive', 'JIBB seminar', 'India automotive entry',
     'インド自動車市場', 'バーラト・モビリティ', '日印自動車'
   ],
-  alternates: { canonical: `${BASE}/events/${SLUG}` },
+  alternates: {
+    canonical: `${BASE}/events/${SLUG}`,
+    languages: {
+      'en': `${BASE}/events/${SLUG}`,
+      'ja': `${BASE}/events/${SLUG}`,
+      'x-default': `${BASE}/events/${SLUG}`,
+    }
+  },
   openGraph: {
     title: "Bharat Mobility 2027 & India Automotive Business Entry Seminar | JIBB",
-    description: "ACMA delegation visits Japan — May 11, 2026 · Ginza Blossom, Tokyo. India automotive market outlook and exhibition briefing.",
+    description: "ACMA delegation visits Japan — May 11, 2026 · Ginza Blossom, Tokyo. India automotive market outlook and exhibition briefing. インド自動車市場セミナー・バーラトモビリティ2027出展説明会。",
     url: `${BASE}/events/${SLUG}`,
     siteName: 'JIBB',
+    locale: 'ja_JP',
     type: 'website',
-    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'Bharat Mobility 2027 Seminar' }]
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'Bharat Mobility 2027 Seminar | バーラトモビリティ2027セミナー' }]
   },
   twitter: {
     card: 'summary_large_image',
     title: "Bharat Mobility 2027 India Automotive Seminar | JIBB",
-    description: "May 11, 2026 · Ginza Blossom, Tokyo. India automotive business entry seminar with ACMA.",
+    description: "May 11, 2026 · Ginza Blossom, Tokyo. India automotive business entry seminar with ACMA. インド自動車ビジネス参入セミナー。",
     images: [OG_IMAGE]
   }
 }

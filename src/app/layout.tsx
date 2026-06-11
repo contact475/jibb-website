@@ -33,13 +33,18 @@ export const metadata: Metadata = {
     template: '%s | JIBB'
   },
   description: 'Enabling the Next Global Manufacturing Shift. We connect stakeholders, businesses, institutions, and governments to create meaningful partnerships between Japan and India. 日本とインドの間で有意義なパートナーシップを構築します。',
-  keywords: ['Japan India Business Bureau', 'JIBB', 'Semiconductor Committee', 'NPO JIBB', 'India Japan Business', '日印ビジネス局'],
+  keywords: ['Japan India Business Bureau', 'JIBB', 'Semiconductor Committee', 'NPO JIBB', 'India Japan Business', '日印ビジネス局', '日印ビジネスビューロー', '日本インドビジネス'],
   alternates: {
-    canonical: 'https://npo-jibb.org'
+    canonical: 'https://npo-jibb.org',
+    languages: {
+      'en': 'https://npo-jibb.org',
+      'ja': 'https://npo-jibb.org',
+      'x-default': 'https://npo-jibb.org',
+    }
   },
   openGraph: {
     title: 'JIBB - Japan India Business Bureau | 日印ビジネス局',
-    description: 'Enabling the Next Global Manufacturing Shift. We connect stakeholders, businesses, institutions, and governments to create meaningful partnerships between Japan and India.',
+    description: 'Enabling the Next Global Manufacturing Shift. We connect stakeholders, businesses, institutions, and governments to create meaningful partnerships between Japan and India. 日本とインドの間で有意義なパートナーシップを構築します。',
     url: 'https://npo-jibb.org',
     siteName: 'JIBB',
     locale: 'ja_JP',
@@ -49,7 +54,7 @@ export const metadata: Metadata = {
         url: 'https://www.npo-jibb.org/hero-illustration.webp',
         width: 1200,
         height: 630,
-        alt: 'JIBB Illustration'
+        alt: 'JIBB - Japan India Business Bureau'
       }
     ]
   },
