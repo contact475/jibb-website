@@ -78,6 +78,12 @@ export default function EventsLandingPage() {
   const [showPast, setShowPast] = useState(false)
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0)
 
+  const activeEvents = showPast ? pastEvents : upcomingEvents
+  const activeBannerIndex = activeEvents.length > 0 && Number.isInteger(currentBannerIndex) && currentBannerIndex >= 0 && currentBannerIndex < activeEvents.length
+    ? currentBannerIndex
+    : 0
+  const activeEvent = activeEvents[activeBannerIndex]
+
   // State for gallery lightbox
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
@@ -110,6 +116,13 @@ export default function EventsLandingPage() {
   useEffect(() => {
     setCurrentBannerIndex(0)
   }, [showPast])
+
+  // Re-clamp the current banner index if the active event list shrinks or changes
+  useEffect(() => {
+    if (activeEvents.length > 0 && (currentBannerIndex < 0 || currentBannerIndex >= activeEvents.length || !Number.isInteger(currentBannerIndex))) {
+      setCurrentBannerIndex(0)
+    }
+  }, [activeEvents.length, currentBannerIndex])
 
   // Handle keyboard events for lightbox navigation
   useEffect(() => {
@@ -241,26 +254,26 @@ export default function EventsLandingPage() {
           </div>
 
           <div className="evl-banners-container">
-            {((showPast ? pastEvents : upcomingEvents).length > 0) && (
+            {(activeEvents.length > 0 && activeEvent) && (
               <div className="evl-banner-carousel-wrapper">
                 {/* Banner Card */}
                 <motion.div
-                  key={`${showPast ? 'past' : 'upcoming'}-${currentBannerIndex}`}
+                  key={`${showPast ? 'past' : 'upcoming'}-${activeBannerIndex}`}
                   className="evl-banner-card"
                   initial="hidden"
                   animate="visible"
                   variants={scaleIn}
                 >
                   <Link 
-                    href={`/events/${(showPast ? pastEvents : upcomingEvents)[currentBannerIndex].slug}`} 
+                    href={`/events/${activeEvent.slug}`} 
                     className="evl-banner-link"
                   >
                     <Image
                       src={locale === 'ja' 
-                        ? (showPast ? pastEvents : upcomingEvents)[currentBannerIndex].posterJa 
-                        : (showPast ? pastEvents : upcomingEvents)[currentBannerIndex].posterEn
+                        ? activeEvent.posterJa 
+                        : activeEvent.posterEn
                       }
-                      alt={(showPast ? pastEvents : upcomingEvents)[currentBannerIndex][locale as 'en' | 'ja'].title}
+                      alt={activeEvent[locale as 'en' | 'ja'].title}
                       width={1200}
                       height={630}
                       style={{ width: '100%', height: 'auto', display: 'block' }}

@@ -9432,6 +9432,8 @@ body:has(.event-ticker) .nav {
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .evl-banners-grid {
@@ -9479,6 +9481,7 @@ body:has(.event-ticker) .nav {
 .evl-banner-carousel-wrapper {
   position: relative;
   width: 100%;
+  max-width: 820px;
   overflow: visible;
 }
 
