@@ -19,7 +19,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${domain}/events`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.9,
+    },
+    {
+      url: `${domain}/events/india-japan-manufacturing-collaboration-2026`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
+    {
+      url: `${domain}/events/semicon-india-2026`,
+      lastModified: new Date('2026-04-28'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${domain}/events/bharat-mobility-2026`,
+      lastModified: new Date('2026-05-11'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
     },
   ]
 }
