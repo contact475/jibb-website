@@ -123,7 +123,7 @@ export default function Navbar() {
                     { href: '#sectors', label: t.nav.strategicSectors },
                     { href: '#innovation', label: t.nav.innovationHub },
                     { href: '/events', label: locale === 'ja' ? 'イベント' : 'Events' },
-                    { href: '/jisc', label: 'JISC' },
+                    // { href: '/jisc', label: 'JISC' },
                     { href: '#contact', label: t.nav.contact }
                   ].map((link, i) => (
                     <motion.li

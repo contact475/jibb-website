@@ -1,5 +1,5 @@
 'use client'
- 
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -37,8 +37,8 @@ const notifications: Notification[] = [
       en: 'Join us on July 3, 2026 for an exclusive seminar in Tokyo on investment and market entry opportunities.',
       ja: '2026年7月3日東京開催 - 日本製造企業向け投資・パートナーシップ・参入機会セミナー。'
     },
-    image: '/events/JIBB_Event_3_July_2026.png',
-    link: '/events',
+    image: '/events/JIBB_Event_3_July_2026.jpg',
+    link: '/events/india-japan-manufacturing-collaboration-2026',
     date: '2026-07-03',
     badge: {
       en: 'Upcoming Event',
@@ -62,12 +62,12 @@ const containerVariants = {
 import type { Variants } from 'framer-motion'
 
 const cardVariants: Variants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     scale: 0.9,
     y: 30
   },
-  visible: { 
+  visible: {
     opacity: 1,
     scale: 1,
     y: 0,
@@ -77,7 +77,7 @@ const cardVariants: Variants = {
       damping: 20
     }
   },
-  exit: { 
+  exit: {
     opacity: 0,
     scale: 0.9,
     y: -20,
@@ -120,7 +120,7 @@ export default function NotifyAll() {
         </p>
       </div>
 
-      <motion.div 
+      <motion.div
         className="notify-all-container"
         variants={containerVariants}
         initial="hidden"
@@ -169,9 +169,9 @@ export default function NotifyAll() {
                     {notification.badge && (
                       <div className={`notify-badge notify-badge-${notification.type}`}>
                         <span className="material-symbols-outlined">
-                          {notification.type === 'event' ? 'event' : 
-                           notification.type === 'update' ? 'update' : 
-                           'campaign'}
+                          {notification.type === 'event' ? 'event' :
+                            notification.type === 'update' ? 'update' :
+                              'campaign'}
                         </span>
                         <span style={jpFont}>
                           {notification.badge[locale as 'en' | 'ja']}
@@ -182,13 +182,13 @@ export default function NotifyAll() {
                     <h3 className="notify-title" style={jpFont}>
                       {notification.title[locale as 'en' | 'ja']}
                     </h3>
-                    
+
                     {notification.description && (
                       <p className="notify-description" style={jpFont}>
                         {notification.description[locale as 'en' | 'ja']}
                       </p>
                     )}
-                    
+
                     <div className="notify-cta">
                       <span style={jpFont}>
                         {locale === 'ja' ? '詳細を見る' : 'Learn More'}

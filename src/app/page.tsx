@@ -12,6 +12,7 @@ import {
   CTA,
   Footer,
   NotifyAll,
+  EventTicker,
 } from '@/components'
 
 const jsonLd = {
@@ -34,6 +35,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <EventTicker />
       <Navbar />
       <Hero />
       <NotifyAll />
