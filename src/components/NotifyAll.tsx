@@ -156,8 +156,9 @@ export default function NotifyAll() {
                     <Image
                       src={notification.image}
                       alt={notification.title[locale as 'en' | 'ja']}
-                      width={400}
-                      height={200}
+                      width={600}
+                      height={300}
+                      sizes="(max-width: 680px) 100vw, 600px"
                       className="notify-image"
                       priority
                     />
