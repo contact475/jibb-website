@@ -115,19 +115,19 @@ export default function EventsLandingPage() {
       ]
     },
     'semicon-2026': {
-      name: { en: 'SEMICON 2026', ja: 'SEMICON 2026' },
+      name: { en: 'SEMICON Briefing 2026', ja: 'SEMICON Briefing 2026' },
       images: [
-        { src: '/events/event-gallery/SEMICON 2026/WhatsApp Image 2026-06-05 at 5.32.54 PM.jpeg', alt: locale === 'ja' ? 'SEMICON 2026 会場の様子' : 'SEMICON 2026 Event venue' },
-        { src: '/events/event-gallery/SEMICON 2026/WhatsApp Image 2026-06-05 at 5.32.55 PM.jpeg', alt: locale === 'ja' ? 'ブース打合せ' : 'Booth meeting' },
-        { src: '/events/event-gallery/SEMICON 2026/WhatsApp Image 2026-06-05 at 5.32.56 PM.jpeg', alt: locale === 'ja' ? '日印ビジネス対話' : 'Japan-India business dialogue' },
-        { src: '/events/event-gallery/SEMICON 2026/WhatsApp Image 2026-06-05 at 5.32.56 PM (1).jpeg', alt: locale === 'ja' ? '展示ブースの展示品' : 'Exhibits at the exhibition booth' }
+        { src: '/events/event-gallery/SEMICON Briefing 2026/WhatsApp Image 2026-06-05 at 5.32.54 PM.jpeg', alt: locale === 'ja' ? 'SEMICON 2026 会場の様子' : 'SEMICON 2026 Event venue' },
+        { src: '/events/event-gallery/SEMICON Briefing 2026/WhatsApp Image 2026-06-05 at 5.32.55 PM.jpeg', alt: locale === 'ja' ? 'ブース打合せ' : 'Booth meeting' },
+        { src: '/events/event-gallery/SEMICON Briefing 2026/WhatsApp Image 2026-06-05 at 5.32.56 PM.jpeg', alt: locale === 'ja' ? '日印ビジネス対話' : 'Japan-India business dialogue' },
+        { src: '/events/event-gallery/SEMICON Briefing 2026/WhatsApp Image 2026-06-05 at 5.32.56 PM (1).jpeg', alt: locale === 'ja' ? '展示ブースの展示品' : 'Exhibits at the exhibition booth' }
       ]
     },
     'acma': {
-      name: { en: 'ACMA 2026', ja: 'ACMA 2026' },
+      name: { en: 'Bharat Mobility Briefing 2027', ja: 'Bharat Mobility Briefing 2027' },
       images: [
-        { src: '/events/event-gallery/ACMA 2026/1778741011392.jfif', alt: locale === 'ja' ? 'ACMA セミナー' : 'ACMA Seminar' },
-        { src: '/events/event-gallery/ACMA 2026/1778741011411.jfif', alt: locale === 'ja' ? 'ACMA ネットワーキング' : 'ACMA Networking' }
+        { src: '/events/event-gallery/Bharat Mobility Briefing 2027/1778741011392.jpg', alt: locale === 'ja' ? 'ACMA セミナー' : 'ACMA Seminar' },
+        { src: '/events/event-gallery/Bharat Mobility Briefing 2027/1778741011411.jpg', alt: locale === 'ja' ? 'ACMA ネットワーキング' : 'ACMA Networking' }
       ]
     },
     'electronica': {
