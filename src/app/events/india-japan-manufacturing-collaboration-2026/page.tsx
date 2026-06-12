@@ -64,14 +64,20 @@ const jsonLd = {
     { '@type': 'Organization', name: 'Invest India', url: 'https://www.investindia.gov.in' },
     { '@type': 'Organization', name: 'NPO Japan India Business Bureau (JIBB)', url: 'https://npo-jibb.org' }
   ],
+  performer: [
+    { '@type': 'Organization', name: 'Invest India' },
+    { '@type': 'Organization', name: 'NPO Japan India Business Bureau (JIBB)' }
+  ],
   offers: {
     '@type': 'Offer',
     price: '0',
     priceCurrency: 'JPY',
     availability: 'https://schema.org/InStock',
     url: 'https://forms.office.com/r/d7tMkBLaq8',
+    validFrom: '2026-05-01T00:00:00+09:00',
     validThrough: '2026-07-03'
   },
+  identifier: 'JIBB-IJMC-2026',
   image: OG_IMAGE,
   url: `${BASE}/events/${SLUG}`,
   inLanguage: ['en', 'ja'],
