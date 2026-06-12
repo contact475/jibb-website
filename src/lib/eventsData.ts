@@ -217,7 +217,7 @@ export const eventsData: EventData[] = [
     posterEn: '/events/JIBB_Event_3_July_2026.jpg',
     posterJa: '/events/manufacturing-2026-ja.jpeg',
     registrationUrl: 'https://forms.office.com/r/d7tMkBLaq8',
-    mapUrl: 'https://www.google.com/maps/place/Ginza+Blossom/@35.6705574,139.771239,17z',
+    mapUrl: 'https://maps.app.goo.gl/kAAERz983N4dShL77',
     flyerUrl: '/events/invest-india_seminar_invitation_jp.pdf'
   },
   {
