@@ -1,0 +1,491 @@
+.virtual-booth-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+  gap: 3rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .virtual-booth-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.virtual-booth-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background: var(--bg-primary);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.virtual-booth-stage-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.virtual-booth-stage-wrapper::-webkit-scrollbar {
+  height: 5px;
+}
+
+.virtual-booth-stage-wrapper::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.virtual-booth-stage-wrapper::-webkit-scrollbar-thumb {
+  background: var(--gold, #c5a880);
+  border-radius: 4px;
+}
+
+.virtual-booth-stage {
+  position: relative;
+  width: 100%;
+  min-width: 620px; /* Ensures text size and coordinates map perfectly on mobile */
+  aspect-ratio: 16 / 9;
+  background-color: #f0f0f0;
+  overflow: hidden;
+}
+
+.virtual-booth-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  /* Let clicks pass through images by default */
+}
+
+.video-screen {
+  position: absolute;
+  top: 15%;
+  left: 38.47%;
+  width: 26.6%;
+  height: 25.5%;
+  pointer-events: auto;
+  /* Re-enable clicks for video */
+  background: #000;
+  border-radius: 3px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  border: 2px solid #1e293b;
+  /* TV screen bezel */
+}
+
+.video-screen iframe,
+.video-screen video {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.company-logo {
+  position: absolute;
+  left: 52.3%;
+  bottom: 19.5%;
+  width: 15%;
+  transform: translateX(-50%);
+  z-index: 6;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.company-logo-text {
+  color: #ffffff;
+  font-size: 1.05vw;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+}
+
+.left-standee-content {
+  position: absolute;
+  left: 14.5%;
+  top: 41%;
+  width: 9%;
+  height: 32%;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0.5vw 0;
+}
+
+.right-standee-content {
+  position: absolute;
+  right: 10%;
+  top: 41%;
+  width: 9%;
+  height: 32%;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0.5vw 0;
+}
+
+.standee-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  display: block;
+}
+
+.svg-standee-title {
+  font-size: 20px;
+  font-weight: 700;
+  fill: #ffffff;
+  letter-spacing: 0.05em;
+  font-family: inherit;
+}
+
+.svg-standee-sub {
+  font-size: 24px;
+  font-weight: 500;
+  fill: rgba(255, 255, 255, 0.85);
+  font-family: inherit;
+}
+
+.svg-standee-label {
+  font-size: 18px;
+  font-weight: 600;
+  fill: #c5a880;
+  /* Elegant gold tint */
+  letter-spacing: 0.1em;
+  font-family: inherit;
+}
+
+.svg-standee-value {
+  font-size: 18px;
+  font-weight: 600;
+  fill: #ffffff;
+  font-family: inherit;
+}
+
+.standee-row-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.document-action-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 5px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(4px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.document-action-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn-icon {
+  font-size: 12px !important;
+  padding-right: 4px !important;
+  vertical-align: middle;
+}
+
+/* Side Panel Styles */
+.booth-side-panel-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 1200; /* Placed on top of the virtual booth mobile modal (1100) */
+  display: flex;
+  justify-content: flex-end;
+}
+
+.booth-side-panel {
+  width: 400px;
+  max-width: 90vw;
+  height: 100%;
+  background: #fff;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.side-panel-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.side-panel-close:hover {
+  color: var(--text-primary);
+}
+
+.side-panel-header h3 {
+  margin: 0;
+  font-family: var(--font-cormorant), serif;
+  font-size: 2rem;
+  color: var(--text-primary);
+}
+
+.side-panel-location {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.side-panel-section h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.25rem;
+}
+
+.side-panel-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-panel-list li {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.side-panel-doc {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.side-panel-doc-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.side-panel-doc-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.side-panel-doc-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* PDF Modal Styles */
+.pdf-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  z-index: 1300; /* Placed on top of the side panel overlay (1200) */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.pdf-modal-content {
+  width: 90%;
+  height: 90%;
+  max-width: 1200px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.pdf-modal-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+}
+
+.pdf-modal-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  font-family: inherit;
+}
+
+.pdf-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.pdf-modal-close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.pdf-modal-body {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background: #f1f5f9;
+}
+
+/* Lazy Load Placeholder & Show More Button for Virtual Booth Grid */
+
+.virtual-booth-loading-placeholder {
+  aspect-ratio: 16 / 9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: var(--bg-secondary, rgba(0, 0, 0, 0.02));
+  border: 1px dashed var(--border, rgba(0, 0, 0, 0.1));
+  border-radius: 12px;
+  min-height: 340px;
+  color: var(--text-secondary, #64748b);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.9rem;
+  animation: pulse-placeholder 1.8s infinite ease-in-out;
+  box-sizing: border-box;
+}
+
+@keyframes pulse-placeholder {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.95;
+    background: var(--bg-secondary, rgba(0, 0, 0, 0.04));
+    border-color: var(--gold, #d48a3e);
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.placeholder-spinner {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 3px solid rgba(0, 0, 0, 0.08);
+  border-top-color: var(--gold, #d48a3e);
+  border-radius: 50%;
+  animation: spin-placeholder 1s linear infinite;
+}
+
+@keyframes spin-placeholder {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.virtual-booth-grid-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 3.5rem;
+  width: 100%;
+}
+
+.virtual-booth-grid-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.15));
+  color: var(--text-primary, #0f172a);
+  padding: 0.75rem 2rem;
+  border-radius: 30px;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.virtual-booth-grid-more-btn:hover {
+  background: var(--gold, #d48a3e);
+  border-color: var(--gold, #d48a3e);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 138, 62, 0.3);
+}
+
+.virtual-booth-grid-more-btn:active {
+  transform: translateY(0);
+}
+
+.virtual-booth-grid-more-btn .material-symbols-outlined {
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.virtual-booth-grid-more-btn:hover .material-symbols-outlined {
+  transform: translateY(2px);
+}

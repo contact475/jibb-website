@@ -5,6 +5,9 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useLanguage } from '@/lib/LanguageContext'
 import { Navbar, Footer } from '@/components'
+import VirtualBoothGrid from './components/VirtualBooth/VirtualBoothGrid'
+import VirtualBoothCol from './components/VirtualBooth/VirtualBoothCol'
+import { boothData } from './components/VirtualBooth/boothData'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -597,8 +600,8 @@ export default function JISCPage() {
   const [countryFilter, setCountryFilter] = useState<string>('all')
   const [objectiveFilter, setObjectiveFilter] = useState<string>('all')
 
-  const filteredCompanies = memberCompanies.filter(company => {
-    const matchCountry = countryFilter === 'all' || company.side.toLowerCase() === countryFilter.toLowerCase()
+  const filteredCompanies = boothData.filter(company => {
+    const matchCountry = countryFilter === 'all' || company.country.toLowerCase() === countryFilter.toLowerCase()
     const matchObjective = objectiveFilter === 'all' || company.objectives.some(obj => obj.toLowerCase() === objectiveFilter.toLowerCase())
     return matchCountry && matchObjective
   })
@@ -805,18 +808,11 @@ export default function JISCPage() {
           </div>
         </motion.div>
 
-        <div className="jisc-companies-grid" key={`${countryFilter}-${objectiveFilter}`}>
-          {filteredCompanies.map((company) => (
-            <CompanyCard
-              key={company.en.name}
-              company={company}
-              locale={locale}
-              jpFont={jpFont}
-            />
-          ))}
+        <div className="jisc-companies-grid" key={`${countryFilter}-${objectiveFilter}`} style={{ display: 'block' }}>
+          <VirtualBoothGrid companies={filteredCompanies} />
 
           {/* Persistent Pitch / CTA Card */}
-          <div
+          {/* <div
             className="jisc-company-card jisc-cta-card"
             style={{
               display: 'flex',
@@ -868,9 +864,14 @@ export default function JISCPage() {
               <span className="material-symbols-outlined" style={{ fontSize: '1.2rem' }}>mail</span>
               {locale === 'ja' ? 'お問合せ' : 'Contact Us'}
             </a>
-          </div>
+          </div> */}
         </div>
       </motion.section>
+
+      {/* ======================== INTERACTIVE EXHIBITORS CATALOG ======================== */}
+      <section className="jisc-interactive-catalog">
+        <VirtualBoothCol companies={boothData} />
+      </section>
 
 
 
