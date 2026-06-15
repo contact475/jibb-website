@@ -1,0 +1,382 @@
+/* Full width catalog section container matching jisc-who-we-are styling with custom background */
+.jisc-interactive-catalog {
+  padding: 8rem 4rem;
+  background: url('/jisc/virtual-booth/virtual-booth-col-bg.png') center/cover no-repeat;
+  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .jisc-interactive-catalog {
+    padding: 4rem 1.5rem;
+  }
+}
+
+/* Layout container centered to 1400px (matching jisc-companies-grid) */
+.virtual-booth-col-layout {
+  margin: 0 auto;
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Header section with Toggle aligned to the right */
+.virtual-booth-col-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/* Country toggle buttons */
+.virtual-booth-col-toggle-group {
+  display: flex;
+  align-items: center;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.virtual-booth-col-toggle-btn {
+  padding: 0.6rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: var(--font-montserrat), sans-serif;
+}
+
+.virtual-booth-col-toggle-btn:hover {
+  color: var(--brand);
+}
+
+.virtual-booth-col-toggle-btn.active {
+  background: var(--brand);
+  color: var(--text-on-brand, #ffffff);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Layout Grid */
+.virtual-booth-col-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Left column containing inline VirtualBooth */
+.virtual-booth-col-left {
+  position: sticky;
+  top: 100px;
+  /* Stick on scroll if viewport allows */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Active details panel under left column virtual booth */
+.virtual-booth-col-active-details {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  /* Matches jisc-who-point border-radius */
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.virtual-booth-col-active-details h3 {
+  font-family: var(--font-cormorant), serif;
+  font-size: 1.8rem;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.virtual-booth-col-active-location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.virtual-booth-col-active-location .material-symbols-outlined {
+  font-size: 1.1rem;
+  color: var(--gold);
+}
+
+/* Right column container - completely transparent */
+.virtual-booth-col-right {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  box-shadow: none;
+}
+
+/* Group sections inside right column */
+.virtual-booth-col-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.virtual-booth-col-group-title {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  /* Light gray for readability on dark background */
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+  border-left: none;
+  padding-left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.virtual-booth-col-group-title .objective-icon {
+  color: #4da3ff;
+  /* Bright vibrant blue for readability on dark backgrounds */
+  font-size: 1.5rem;
+  vertical-align: middle;
+}
+
+.virtual-booth-col-group-count {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* Logo grids matching the sponsor layout */
+.virtual-booth-col-logo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 columns by default */
+  gap: 1rem;
+}
+
+/* Logo cards styled exactly like the rectangular sponsor badges */
+.virtual-booth-col-logo-card {
+  aspect-ratio: 21 / 9;
+  /* rectangular landscape badge */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 41, 59, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  /* Matches jisc-who-point */
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.virtual-booth-col-logo-card:hover {
+  transform: translateY(-3px);
+  background: rgba(45, 55, 72, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.virtual-booth-col-logo-card.active {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.15);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.35);
+}
+
+.virtual-booth-col-logo-card-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(1.2) opacity(0.75);
+  transition: all 0.3s ease;
+}
+
+.virtual-booth-col-logo-card:hover .virtual-booth-col-logo-card-img,
+.virtual-booth-col-logo-card.active .virtual-booth-col-logo-card-img {
+  filter: grayscale(0%) brightness(1) opacity(1);
+}
+
+/* Fallback content wrapper */
+.virtual-booth-col-logo-card-fallback-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.virtual-booth-col-logo-card-fallback-wrapper .fallback-icon {
+  color: #4da3ff;
+  /* Bright vibrant blue fallback icon */
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+/* Fallback company name centered typography inspired by Montserrat */
+.virtual-booth-col-logo-card-fallback {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-align: center;
+}
+
+.virtual-booth-col-logo-card:hover .virtual-booth-col-logo-card-fallback,
+.virtual-booth-col-logo-card.active .virtual-booth-col-logo-card-fallback {
+  color: #ffffff;
+}
+
+/* Badge for active card indicator at the top right */
+.virtual-booth-col-logo-card-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3b82f6;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.virtual-booth-col-logo-card.active .virtual-booth-col-logo-card-badge {
+  opacity: 1;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 992px) {
+  .virtual-booth-col-main {
+    gap: 2rem;
+  }
+
+  .virtual-booth-col-logo-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .virtual-booth-col-main {
+    grid-template-columns: 1fr;
+  }
+
+  /* Hide the left column entirely on mobile, logos will trigger modal */
+  .virtual-booth-col-left {
+    display: none;
+  }
+
+  .virtual-booth-col-right {
+    padding: 0;
+  }
+
+  .virtual-booth-col-logo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile Modal Overlay Styles */
+.virtual-booth-col-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 1100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.virtual-booth-col-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  background: var(--bg-primary);
+  border-radius: 4px;
+  /* Matches jisc-who-point border-radius */
+  border: 1px solid var(--border);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.virtual-booth-col-modal-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-secondary);
+}
+
+.virtual-booth-col-modal-header h3 {
+  font-family: var(--font-cormorant), serif;
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.virtual-booth-col-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.virtual-booth-col-modal-close:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-primary);
+}
+
+.virtual-booth-col-modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+}
